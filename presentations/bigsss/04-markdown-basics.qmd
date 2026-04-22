@@ -241,18 +241,6 @@ summary(model)
 
 Show code when teaching methods; hide code when presenting only final results.
 
-## Raw Content and Page Breaks
-
-```markdown
-```{=latex}
-\newpage
-```
-
-{{< pagebreak >}}
-```
-
-These are useful when preparing PDF/Word manuscripts with strict layout requirements.
-
 ## Common Pitfalls in Academic Drafts
 
 - Skipping blank lines before lists or blocks.

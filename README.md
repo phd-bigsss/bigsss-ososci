@@ -3,7 +3,7 @@
 Workshop materials for the **BIGSSS Summer School 2026**.  
 Developed at the [Centre for Social Conflict and Cohesion Studies (COES)](https://coes.cl), Open Social Science Lab (LISA).
 
-📊 **[View slides online](https://jiturras.github.io/bigsss-ososci/presentations/bigsss/ososci.html)**
+📊 **[View slides online](https://phd-bigsss.github.io/bigsss-ososci/presentations/bigsss/ososci.html)**
 
 ---
 

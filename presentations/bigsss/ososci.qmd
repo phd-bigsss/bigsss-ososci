@@ -106,8 +106,7 @@ rm(list = ls())
 
 {{< include 05-ipo-quarto.qmd >}} 
 
-# Thank you for your attention! 
-
+# Thank you for your attention
 
 # References
 

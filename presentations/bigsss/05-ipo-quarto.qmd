@@ -1,10 +1,17 @@
 ---
 bibliography: "bib/phd-tesis.bib" 
 ---
+# Quarto for Reproducible Research
 
 ## What is Quarto?
 
 ![](images/qmdpandoc.png){width="100%" fig-align="center"}
+
+- Quarto is an open-source scientific and technical publishing system built on top of R Markdown and Pandoc. 
+
+- It allows you to create dynamic documents that combine narrative text, code, and output in a single file. 
+
+- Quarto supports multiple programming languages (R, Python, Julia, Observable) and can render to a wide variety of formats (HTML, PDF, Word, Reveal.js slides, and more).
 
 ## How it works
 
@@ -20,7 +27,7 @@ bibliography: "bib/phd-tesis.bib"
 - 📊 Slides — Reveal.js presentations
 - 📝 Word / EPUB — for editors and publishers
 
-# Quarto for Reproducible Research
+# The structure of a Quarto document
 
 ## What is the YAML?
 
@@ -93,7 +100,7 @@ execute:
 
 # The Anatomy of a Code Chunk
 
-## Slide 1: Pure Code (no output shown)
+## 1: Pure Code (no output shown)
 
 Use `echo: true` to display code, `eval: false` to skip execution — useful for teaching syntax without running it.
 
@@ -117,14 +124,12 @@ save(dfstudy1, file = here("input/data/proc/dfstudy1.RData"))
 ```
 ````
 
-Key options:
-
 - `label` — unique chunk identifier (used in cross-references and error messages)
 - `echo: true` — show the code in the output
 - `eval: false` — do not run the code
 - `warning/message: false` — suppress console noise
 
-## Slide 2: Code + Output
+## 2: Code + Output
 
 Set `eval: true` to run the code and display results immediately below.
 
@@ -141,14 +146,12 @@ summary(model)
 ```
 ````
 
-Key options:
-
 - `eval: true` — execute the chunk and embed output
 - `results: 'markup'` *(default)* — prints console output as-is
 - `results: 'hide'` — runs code but suppresses printed output
 - `include: false` — runs code silently, hides both code and output
 
-## Slide 3: Code + Figure Options
+## 3: Code + Figure Options
 
 Control figure size, resolution, alignment, and caption directly in the chunk.
 
@@ -172,16 +175,13 @@ ggplot(dfstudy1, aes(x = education, y = prestige_cont)) +
   theme_minimal()
 ```
 ````
-
-Key options:
-
 - `fig-width` / `fig-height` — dimensions in inches
 - `fig-align` — `"center"`, `"left"`, or `"right"`
 - `fig-cap` — caption text (also used for cross-referencing with `@fig-scatter`)
 - `out-width` — scales the image in the output (e.g. `"85%"`)
 - `dpi` — resolution (300 for print quality)
 
-## Slide 4: Code for HTML Regression Tables (texreg)
+## 4: Code for HTML Regression Tables (texreg)
 
 Use `results: 'asis'` so the raw HTML from `htmlreg()` is passed through directly.
 
@@ -212,7 +212,7 @@ htmlreg(
 ```
 ````
 
-Key options:
+## Key options:
 
 - `results: 'asis'` — **required** for `htmlreg()` / `kable()` — passes raw HTML without escaping
 - `echo: true` — show the table-building code
@@ -281,7 +281,7 @@ Embed live R results directly inside prose — values update automatically on ev
 ::: {.column width="40%"}
 **Source (`.qmd`):**
 
-```markdown
+```
 The sample contains
 `r nrow(dfstudy1)` occupations.
 

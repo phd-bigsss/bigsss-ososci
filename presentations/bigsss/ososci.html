@@ -1290,7 +1290,7 @@ wc</td>
 <h2>Univariate Visualizations (Output)</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>p_hist</span>
 <span id="cb19-2"><a href=""></a>p_bar </span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell quarto-layout-panel" width="100%" height="100%" data-layout-ncol="2" data-layout-align="center">
+<div class="cell quarto-layout-panel" data-layout-ncol="2" data-layout-align="center" height="100%" width="100%">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -2203,72 +2203,76 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 <span id="cb46-27"><a href=""></a>:::</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Show code when teaching methods; hide code when presenting only final results.</p>
 </section>
-<section id="raw-content-and-page-breaks" class="slide level2">
-<h2>Raw Content and Page Breaks</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href=""></a><span class="in">```{=latex}</span></span>
-<span id="cb47-2"><a href=""></a><span class="in">\newpage</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p></p>
-<pre><code>
-These are useful when preparing PDF/Word manuscripts with strict layout requirements.
+<section id="common-pitfalls-in-academic-drafts" class="slide level2">
+<h2>Common Pitfalls in Academic Drafts</h2>
+<ul>
+<li>Skipping blank lines before lists or blocks.</li>
+<li>Overusing bold, colors, or decorative formatting.</li>
+<li>Inconsistent heading levels.</li>
+<li>Non-unique footnote identifiers.</li>
+<li>Large uncaptioned tables/figures.</li>
+</ul>
+</section>
+<section id="practical-checklist" class="slide level2">
+<h2>Practical Checklist</h2>
+<p>Before submitting a draft:</p>
+<ol type="1">
+<li>Confirm heading hierarchy reflects argument flow.</li>
+<li>Confirm all tables and figures are labeled and interpretable.</li>
+<li>Confirm equations render correctly.</li>
+<li>Confirm links, footnotes, and citations are valid.</li>
+<li>Render to PDF/HTML and review formatting differences.</li>
+</ol>
+<p>Source guide: <a href="https://quarto.org/docs/authoring/markdown-basics.html" class="uri">https://quarto.org/docs/authoring/markdown-basics.html</a></p>
+</section></section>
+<section>
+<section id="quarto-for-reproducible-research" class="title-slide slide level1 center">
+<h1>Quarto for Reproducible Research</h1>
 
-## Common Pitfalls in Academic Drafts
+</section>
+<section id="what-is-quarto" class="slide level2">
+<h2>What is Quarto?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/qmdpandoc.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+<ul>
+<li><p>Quarto is an open-source scientific and technical publishing system built on top of R Markdown and Pandoc.</p></li>
+<li><p>It allows you to create dynamic documents that combine narrative text, code, and output in a single file.</p></li>
+<li><p>Quarto supports multiple programming languages (R, Python, Julia, Observable) and can render to a wide variety of formats (HTML, PDF, Word, Reveal.js slides, and more).</p></li>
+</ul>
+</section>
+<section id="how-it-works" class="slide level2">
+<h2>How it works</h2>
+<ul>
+<li><strong><code>.qmd</code></strong> — source file combining narrative text (Markdown) and code chunks</li>
+<li><strong>Knitr</strong> — executes R code chunks and embeds results (tables, figures, text) into the document</li>
+<li><strong>Markdown</strong> — lightweight plain-text syntax; human-readable and version-control friendly</li>
+<li><strong>Pandoc</strong> — universal converter that transforms the Markdown into any target format</li>
+</ul>
+<p><strong>Output formats</strong></p>
+<ul>
+<li>📄 PDF — manuscripts, reports, theses</li>
+<li>🌐 HTML — websites, interactive documents</li>
+<li>📊 Slides — Reveal.js presentations</li>
+<li>📝 Word / EPUB — for editors and publishers</li>
+</ul>
+</section></section>
+<section>
+<section id="the-structure-of-a-quarto-document" class="title-slide slide level1 center">
+<h1>The structure of a Quarto document</h1>
 
-- Skipping blank lines before lists or blocks.
-- Overusing bold, colors, or decorative formatting.
-- Inconsistent heading levels.
-- Non-unique footnote identifiers.
-- Large uncaptioned tables/figures.
-
-## Practical Checklist
-
-Before submitting a draft:
-
-1. Confirm heading hierarchy reflects argument flow.
-2. Confirm all tables and figures are labeled and interpretable.
-3. Confirm equations render correctly.
-4. Confirm links, footnotes, and citations are valid.
-5. Render to PDF/HTML and review formatting differences.
-
-Source guide: &lt;https://quarto.org/docs/authoring/markdown-basics.html&gt;
-
-
----
-bibliography: "bib/phd-tesis.bib" 
----
-
-## What is Quarto?
-
-![](images/qmdpandoc.png){width="100%" fig-align="center"}
-
-## How it works
-
-- **`.qmd`** — source file combining narrative text (Markdown) and code chunks
-- **Knitr** — executes R code chunks and embeds results (tables, figures, text) into the document
-- **Markdown** — lightweight plain-text syntax; human-readable and version-control friendly
-- **Pandoc** — universal converter that transforms the Markdown into any target format
-
-**Output formats**
-
-- 📄 PDF — manuscripts, reports, theses
-- 🌐 HTML — websites, interactive documents
-- 📊 Slides — Reveal.js presentations
-- 📝 Word / EPUB — for editors and publishers
-
-# Quarto for Reproducible Research
-
-## What is the YAML?
-
-**YAML** stands for *"YAML Ain't Markup Language"* — a human-readable data serialization format used for configuration files.
-
-The **YAML header** is the configuration block at the top of every `.qmd` file.
-
-It controls *what* Quarto produces and *how* it looks — before any content is written.
-
-```yaml
----
-title: "My Document"
-format: html
----</code></pre>
+</section>
+<section id="what-is-the-yaml" class="slide level2">
+<h2>What is the YAML?</h2>
+<p><strong>YAML</strong> stands for <em>“YAML Ain’t Markup Language”</em> — a human-readable data serialization format used for configuration files.</p>
+<p>The <strong>YAML header</strong> is the configuration block at the top of every <code>.qmd</code> file.</p>
+<p>It controls <em>what</em> Quarto produces and <em>how</em> it looks — before any content is written.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb47-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb47-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
+<span id="cb47-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb47-4"><a href=""></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Delimited by <code>---</code> at the start and end</li>
 <li>Written in YAML syntax: <code>key: value</code> pairs</li>
@@ -2279,12 +2283,12 @@ format: html
 <section id="yaml-basics" class="slide level2">
 <h2>YAML Basics</h2>
 <p>Minimal HTML document:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb49-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb49-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Study Report"</span></span>
-<span id="cb49-3"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Julio"</span></span>
-<span id="cb49-4"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb49-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb49-6"><a href=""></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb48-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb48-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Study Report"</span></span>
+<span id="cb48-3"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Julio"</span></span>
+<span id="cb48-4"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb48-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb48-6"><a href=""></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>title</code> — document title shown in the output</li>
 <li><code>author</code> — author name(s)</li>
@@ -2295,22 +2299,22 @@ format: html
 <section id="yaml-options-toc-and-more" class="slide level2">
 <h2>YAML Options: TOC and More</h2>
 <p>Extend the <code>format</code> block with nested options:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb50-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb50-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Study Report"</span></span>
-<span id="cb50-3"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Julio"</span></span>
-<span id="cb50-4"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb50-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb50-6"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb50-7"><a href=""></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb50-8"><a href=""></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
-<span id="cb50-9"><a href=""></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb50-10"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb50-11"><a href=""></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb50-12"><a href=""></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb50-13"><a href=""></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb50-14"><a href=""></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb50-15"><a href=""></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb50-16"><a href=""></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb49-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb49-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Study Report"</span></span>
+<span id="cb49-3"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Julio"</span></span>
+<span id="cb49-4"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb49-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb49-6"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb49-7"><a href=""></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb49-8"><a href=""></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb49-9"><a href=""></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb49-10"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb49-11"><a href=""></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb49-12"><a href=""></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb49-13"><a href=""></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb49-14"><a href=""></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb49-15"><a href=""></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb49-16"><a href=""></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>toc</code> — adds a table of contents</li>
 <li><code>toc-depth</code> — how many heading levels to include</li>
@@ -2326,27 +2330,26 @@ format: html
 <h1>The Anatomy of a Code Chunk</h1>
 
 </section>
-<section id="slide-1-pure-code-no-output-shown" class="slide level2">
-<h2>Slide 1: Pure Code (no output shown)</h2>
+<section id="pure-code-no-output-shown" class="slide level2">
+<h2>1: Pure Code (no output shown)</h2>
 <p>Use <code>echo: true</code> to display code, <code>eval: false</code> to skip execution — useful for teaching syntax without running it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href=""></a><span class="in">```{r}</span></span>
-<span id="cb51-2"><a href=""></a><span class="co">#| label: prep-data</span></span>
-<span id="cb51-3"><a href=""></a><span class="co">#| echo: true</span></span>
-<span id="cb51-4"><a href=""></a><span class="co">#| eval: false</span></span>
-<span id="cb51-5"><a href=""></a><span class="co">#| warning: false</span></span>
-<span id="cb51-6"><a href=""></a><span class="co">#| message: false</span></span>
-<span id="cb51-7"><a href=""></a></span>
-<span id="cb51-8"><a href=""></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(here, car, dplyr)</span>
-<span id="cb51-9"><a href=""></a><span class="fu">data</span>(Prestige)</span>
-<span id="cb51-10"><a href=""></a>dfstudy1 <span class="ot">&lt;-</span> Prestige <span class="sc">%&gt;%</span></span>
-<span id="cb51-11"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb51-12"><a href=""></a>    <span class="at">prestige_cont =</span> prestige,</span>
-<span id="cb51-13"><a href=""></a>    <span class="at">income_cont   =</span> income,</span>
-<span id="cb51-14"><a href=""></a>    <span class="at">blue_collar   =</span> car<span class="sc">::</span><span class="fu">recode</span>(type, <span class="st">"'bc' = 1; else = 0"</span>)</span>
-<span id="cb51-15"><a href=""></a>  )</span>
-<span id="cb51-16"><a href=""></a><span class="fu">save</span>(dfstudy1, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"input/data/proc/dfstudy1.RData"</span>))</span>
-<span id="cb51-17"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Key options:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb50-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb50-2"><a href=""></a><span class="co">#| label: prep-data</span></span>
+<span id="cb50-3"><a href=""></a><span class="co">#| echo: true</span></span>
+<span id="cb50-4"><a href=""></a><span class="co">#| eval: false</span></span>
+<span id="cb50-5"><a href=""></a><span class="co">#| warning: false</span></span>
+<span id="cb50-6"><a href=""></a><span class="co">#| message: false</span></span>
+<span id="cb50-7"><a href=""></a></span>
+<span id="cb50-8"><a href=""></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(here, car, dplyr)</span>
+<span id="cb50-9"><a href=""></a><span class="fu">data</span>(Prestige)</span>
+<span id="cb50-10"><a href=""></a>dfstudy1 <span class="ot">&lt;-</span> Prestige <span class="sc">%&gt;%</span></span>
+<span id="cb50-11"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb50-12"><a href=""></a>    <span class="at">prestige_cont =</span> prestige,</span>
+<span id="cb50-13"><a href=""></a>    <span class="at">income_cont   =</span> income,</span>
+<span id="cb50-14"><a href=""></a>    <span class="at">blue_collar   =</span> car<span class="sc">::</span><span class="fu">recode</span>(type, <span class="st">"'bc' = 1; else = 0"</span>)</span>
+<span id="cb50-15"><a href=""></a>  )</span>
+<span id="cb50-16"><a href=""></a><span class="fu">save</span>(dfstudy1, <span class="at">file =</span> <span class="fu">here</span>(<span class="st">"input/data/proc/dfstudy1.RData"</span>))</span>
+<span id="cb50-17"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>label</code> — unique chunk identifier (used in cross-references and error messages)</li>
 <li><code>echo: true</code> — show the code in the output</li>
@@ -2354,20 +2357,19 @@ format: html
 <li><code>warning/message: false</code> — suppress console noise</li>
 </ul>
 </section>
-<section id="slide-2-code-output" class="slide level2">
-<h2>Slide 2: Code + Output</h2>
+<section id="code-output" class="slide level2">
+<h2>2: Code + Output</h2>
 <p>Set <code>eval: true</code> to run the code and display results immediately below.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href=""></a><span class="in">```{r}</span></span>
-<span id="cb52-2"><a href=""></a><span class="co">#| label: fit-model</span></span>
-<span id="cb52-3"><a href=""></a><span class="co">#| echo: true</span></span>
-<span id="cb52-4"><a href=""></a><span class="co">#| eval: true</span></span>
-<span id="cb52-5"><a href=""></a><span class="co">#| warning: false</span></span>
-<span id="cb52-6"><a href=""></a></span>
-<span id="cb52-7"><a href=""></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">"input/data/proc/dfstudy1.RData"</span>))</span>
-<span id="cb52-8"><a href=""></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige_cont <span class="sc">~</span> income_cont <span class="sc">+</span> education, <span class="at">data =</span> dfstudy1)</span>
-<span id="cb52-9"><a href=""></a><span class="fu">summary</span>(model)</span>
-<span id="cb52-10"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Key options:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb51-2"><a href=""></a><span class="co">#| label: fit-model</span></span>
+<span id="cb51-3"><a href=""></a><span class="co">#| echo: true</span></span>
+<span id="cb51-4"><a href=""></a><span class="co">#| eval: true</span></span>
+<span id="cb51-5"><a href=""></a><span class="co">#| warning: false</span></span>
+<span id="cb51-6"><a href=""></a></span>
+<span id="cb51-7"><a href=""></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">"input/data/proc/dfstudy1.RData"</span>))</span>
+<span id="cb51-8"><a href=""></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(prestige_cont <span class="sc">~</span> income_cont <span class="sc">+</span> education, <span class="at">data =</span> dfstudy1)</span>
+<span id="cb51-9"><a href=""></a><span class="fu">summary</span>(model)</span>
+<span id="cb51-10"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>eval: true</code> — execute the chunk and embed output</li>
 <li><code>results: 'markup'</code> <em>(default)</em> — prints console output as-is</li>
@@ -2375,28 +2377,27 @@ format: html
 <li><code>include: false</code> — runs code silently, hides both code and output</li>
 </ul>
 </section>
-<section id="slide-3-code-figure-options" class="slide level2">
-<h2>Slide 3: Code + Figure Options</h2>
+<section id="code-figure-options" class="slide level2">
+<h2>3: Code + Figure Options</h2>
 <p>Control figure size, resolution, alignment, and caption directly in the chunk.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb53-1"><a href=""></a><span class="in">```{r}</span></span>
-<span id="cb53-2"><a href=""></a><span class="co">#| label: fig-scatter</span></span>
-<span id="cb53-3"><a href=""></a><span class="co">#| echo: true</span></span>
-<span id="cb53-4"><a href=""></a><span class="co">#| eval: true</span></span>
-<span id="cb53-5"><a href=""></a><span class="co">#| fig-width: 7</span></span>
-<span id="cb53-6"><a href=""></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb53-7"><a href=""></a><span class="co">#| fig-align: center</span></span>
-<span id="cb53-8"><a href=""></a><span class="co">#| fig-cap: "Figure 1. Prestige vs. Education"</span></span>
-<span id="cb53-9"><a href=""></a><span class="co">#| out-width: "85%"</span></span>
-<span id="cb53-10"><a href=""></a><span class="co">#| dpi: 300</span></span>
-<span id="cb53-11"><a href=""></a></span>
-<span id="cb53-12"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb53-13"><a href=""></a><span class="fu">ggplot</span>(dfstudy1, <span class="fu">aes</span>(<span class="at">x =</span> education, <span class="at">y =</span> prestige_cont)) <span class="sc">+</span></span>
-<span id="cb53-14"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb53-15"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb53-16"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Years of Education"</span>, <span class="at">y =</span> <span class="st">"Prestige Score"</span>) <span class="sc">+</span></span>
-<span id="cb53-17"><a href=""></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb53-18"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Key options:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb52-2"><a href=""></a><span class="co">#| label: fig-scatter</span></span>
+<span id="cb52-3"><a href=""></a><span class="co">#| echo: true</span></span>
+<span id="cb52-4"><a href=""></a><span class="co">#| eval: true</span></span>
+<span id="cb52-5"><a href=""></a><span class="co">#| fig-width: 7</span></span>
+<span id="cb52-6"><a href=""></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb52-7"><a href=""></a><span class="co">#| fig-align: center</span></span>
+<span id="cb52-8"><a href=""></a><span class="co">#| fig-cap: "Figure 1. Prestige vs. Education"</span></span>
+<span id="cb52-9"><a href=""></a><span class="co">#| out-width: "85%"</span></span>
+<span id="cb52-10"><a href=""></a><span class="co">#| dpi: 300</span></span>
+<span id="cb52-11"><a href=""></a></span>
+<span id="cb52-12"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb52-13"><a href=""></a><span class="fu">ggplot</span>(dfstudy1, <span class="fu">aes</span>(<span class="at">x =</span> education, <span class="at">y =</span> prestige_cont)) <span class="sc">+</span></span>
+<span id="cb52-14"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb52-15"><a href=""></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb52-16"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Years of Education"</span>, <span class="at">y =</span> <span class="st">"Prestige Score"</span>) <span class="sc">+</span></span>
+<span id="cb52-17"><a href=""></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb52-18"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>fig-width</code> / <code>fig-height</code> — dimensions in inches</li>
 <li><code>fig-align</code> — <code>"center"</code>, <code>"left"</code>, or <code>"right"</code></li>
@@ -2405,34 +2406,36 @@ format: html
 <li><code>dpi</code> — resolution (300 for print quality)</li>
 </ul>
 </section>
-<section id="slide-4-code-for-html-regression-tables-texreg" class="slide level2">
-<h2>Slide 4: Code for HTML Regression Tables (texreg)</h2>
+<section id="code-for-html-regression-tables-texreg" class="slide level2">
+<h2>4: Code for HTML Regression Tables (texreg)</h2>
 <p>Use <code>results: 'asis'</code> so the raw HTML from <code>htmlreg()</code> is passed through directly.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb54-1"><a href=""></a><span class="in">```{r}</span></span>
-<span id="cb54-2"><a href=""></a><span class="co">#| label: tbl-regression</span></span>
-<span id="cb54-3"><a href=""></a><span class="co">#| echo: true</span></span>
-<span id="cb54-4"><a href=""></a><span class="co">#| eval: true</span></span>
-<span id="cb54-5"><a href=""></a><span class="co">#| results: 'asis'</span></span>
-<span id="cb54-6"><a href=""></a><span class="co">#| warning: false</span></span>
-<span id="cb54-7"><a href=""></a></span>
-<span id="cb54-8"><a href=""></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(texreg)</span>
-<span id="cb54-9"><a href=""></a></span>
-<span id="cb54-10"><a href=""></a>coef_map <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb54-11"><a href=""></a>  <span class="st">"(Intercept)"</span>         <span class="ot">=</span> <span class="st">"Intercept"</span>,</span>
-<span id="cb54-12"><a href=""></a>  <span class="st">"income_cont"</span>         <span class="ot">=</span> <span class="st">"Income (continuous)"</span>,</span>
-<span id="cb54-13"><a href=""></a>  <span class="st">"education"</span>           <span class="ot">=</span> <span class="st">"Education (years)"</span>,</span>
-<span id="cb54-14"><a href=""></a>  <span class="st">"blue_collarYes"</span>      <span class="ot">=</span> <span class="st">"Blue collar (ref. No)"</span></span>
-<span id="cb54-15"><a href=""></a>)</span>
-<span id="cb54-16"><a href=""></a></span>
-<span id="cb54-17"><a href=""></a><span class="fu">htmlreg</span>(</span>
-<span id="cb54-18"><a href=""></a>  <span class="fu">list</span>(model_1, model_2),</span>
-<span id="cb54-19"><a href=""></a>  <span class="at">custom.coef.map    =</span> coef_map,</span>
-<span id="cb54-20"><a href=""></a>  <span class="at">custom.model.names =</span> <span class="fu">c</span>(<span class="st">"Model 1"</span>, <span class="st">"Model 2"</span>),</span>
-<span id="cb54-21"><a href=""></a>  <span class="at">caption            =</span> <span class="st">"Table 1. OLS models predicting occupational prestige"</span>,</span>
-<span id="cb54-22"><a href=""></a>  <span class="at">caption.above      =</span> <span class="cn">TRUE</span></span>
-<span id="cb54-23"><a href=""></a>)</span>
-<span id="cb54-24"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Key options:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb53-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb53-2"><a href=""></a><span class="co">#| label: tbl-regression</span></span>
+<span id="cb53-3"><a href=""></a><span class="co">#| echo: true</span></span>
+<span id="cb53-4"><a href=""></a><span class="co">#| eval: true</span></span>
+<span id="cb53-5"><a href=""></a><span class="co">#| results: 'asis'</span></span>
+<span id="cb53-6"><a href=""></a><span class="co">#| warning: false</span></span>
+<span id="cb53-7"><a href=""></a></span>
+<span id="cb53-8"><a href=""></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(texreg)</span>
+<span id="cb53-9"><a href=""></a></span>
+<span id="cb53-10"><a href=""></a>coef_map <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb53-11"><a href=""></a>  <span class="st">"(Intercept)"</span>         <span class="ot">=</span> <span class="st">"Intercept"</span>,</span>
+<span id="cb53-12"><a href=""></a>  <span class="st">"income_cont"</span>         <span class="ot">=</span> <span class="st">"Income (continuous)"</span>,</span>
+<span id="cb53-13"><a href=""></a>  <span class="st">"education"</span>           <span class="ot">=</span> <span class="st">"Education (years)"</span>,</span>
+<span id="cb53-14"><a href=""></a>  <span class="st">"blue_collarYes"</span>      <span class="ot">=</span> <span class="st">"Blue collar (ref. No)"</span></span>
+<span id="cb53-15"><a href=""></a>)</span>
+<span id="cb53-16"><a href=""></a></span>
+<span id="cb53-17"><a href=""></a><span class="fu">htmlreg</span>(</span>
+<span id="cb53-18"><a href=""></a>  <span class="fu">list</span>(model_1, model_2),</span>
+<span id="cb53-19"><a href=""></a>  <span class="at">custom.coef.map    =</span> coef_map,</span>
+<span id="cb53-20"><a href=""></a>  <span class="at">custom.model.names =</span> <span class="fu">c</span>(<span class="st">"Model 1"</span>, <span class="st">"Model 2"</span>),</span>
+<span id="cb53-21"><a href=""></a>  <span class="at">caption            =</span> <span class="st">"Table 1. OLS models predicting occupational prestige"</span>,</span>
+<span id="cb53-22"><a href=""></a>  <span class="at">caption.above      =</span> <span class="cn">TRUE</span></span>
+<span id="cb53-23"><a href=""></a>)</span>
+<span id="cb53-24"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="key-options" class="slide level2">
+<h2>Key options:</h2>
 <ul>
 <li><code>results: 'asis'</code> — <strong>required</strong> for <code>htmlreg()</code> / <code>kable()</code> — passes raw HTML without escaping</li>
 <li><code>echo: true</code> — show the table-building code</li>
@@ -2446,20 +2449,20 @@ format: html
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><strong>In the chunk header:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb54-1"><a href=""></a><span class="in">```{r}</span></span>
+<span id="cb54-2"><a href=""></a><span class="co">#| label: fig-scatter</span></span>
+<span id="cb54-3"><a href=""></a><span class="co">#| fig-cap: "Prestige vs. Education"</span></span>
+<span id="cb54-4"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb55-1"><a href=""></a><span class="in">```{r}</span></span>
-<span id="cb55-2"><a href=""></a><span class="co">#| label: fig-scatter</span></span>
-<span id="cb55-3"><a href=""></a><span class="co">#| fig-cap: "Prestige vs. Education"</span></span>
+<span id="cb55-2"><a href=""></a><span class="co">#| label: tbl-descriptives</span></span>
+<span id="cb55-3"><a href=""></a><span class="co">#| tbl-cap: "Descriptive statistics"</span></span>
 <span id="cb55-4"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb56-1"><a href=""></a><span class="in">```{r}</span></span>
-<span id="cb56-2"><a href=""></a><span class="co">#| label: tbl-descriptives</span></span>
-<span id="cb56-3"><a href=""></a><span class="co">#| tbl-cap: "Descriptive statistics"</span></span>
-<span id="cb56-4"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>In prose:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb57-1"><a href=""></a>As shown in @fig-scatter, prestige</span>
-<span id="cb57-2"><a href=""></a>increases with education.</span>
-<span id="cb57-3"><a href=""></a></span>
-<span id="cb57-4"><a href=""></a>Descriptive statistics are reported</span>
-<span id="cb57-5"><a href=""></a>in @tbl-descriptives.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb56-1"><a href=""></a>As shown in @fig-scatter, prestige</span>
+<span id="cb56-2"><a href=""></a>increases with education.</span>
+<span id="cb56-3"><a href=""></a></span>
+<span id="cb56-4"><a href=""></a>Descriptive statistics are reported</span>
+<span id="cb56-5"><a href=""></a>in @tbl-descriptives.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:60%;">
 <p><strong>Rules:</strong></p>
 <ul>
@@ -2482,16 +2485,16 @@ format: html
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><strong>Source (<code>.qmd</code>):</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb58-1"><a href=""></a>The sample contains</span>
-<span id="cb58-2"><a href=""></a>102 occupations.</span>
-<span id="cb58-3"><a href=""></a></span>
-<span id="cb58-4"><a href=""></a>The mean prestige score is</span>
-<span id="cb58-5"><a href=""></a>46.8</span>
-<span id="cb58-6"><a href=""></a>(SD = 17.2).</span>
-<span id="cb58-7"><a href=""></a></span>
-<span id="cb58-8"><a href=""></a>The model explains</span>
-<span id="cb58-9"><a href=""></a>79.8%</span>
-<span id="cb58-10"><a href=""></a>of the variance in prestige.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>The sample contains
+102 occupations.
+
+The mean prestige score is
+46.8
+(SD = 17.2).
+
+The model explains
+79.8%
+of the variance in prestige.</code></pre>
 </div><div class="column" style="width:60%;">
 <p><strong>Rendered output:</strong></p>
 <blockquote>
@@ -2508,7 +2511,7 @@ format: html
 </div></div>
 </section></section>
 <section id="thank-you-for-your-attention" class="title-slide slide level1 center">
-<h1>Thank you for your attention!</h1>
+<h1>Thank you for your attention</h1>
 
 </section>
 
