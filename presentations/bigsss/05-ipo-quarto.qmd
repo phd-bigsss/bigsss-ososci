@@ -1,0 +1,314 @@
+---
+bibliography: "bib/phd-tesis.bib" 
+---
+
+## What is Quarto?
+
+![](images/qmdpandoc.png){width="100%" fig-align="center"}
+
+## How it works
+
+- **`.qmd`** — source file combining narrative text (Markdown) and code chunks
+- **Knitr** — executes R code chunks and embeds results (tables, figures, text) into the document
+- **Markdown** — lightweight plain-text syntax; human-readable and version-control friendly
+- **Pandoc** — universal converter that transforms the Markdown into any target format
+
+**Output formats**
+
+- 📄 PDF — manuscripts, reports, theses
+- 🌐 HTML — websites, interactive documents
+- 📊 Slides — Reveal.js presentations
+- 📝 Word / EPUB — for editors and publishers
+
+# Quarto for Reproducible Research
+
+## What is the YAML?
+
+**YAML** stands for *"YAML Ain't Markup Language"* — a human-readable data serialization format used for configuration files.
+
+The **YAML header** is the configuration block at the top of every `.qmd` file.
+
+It controls *what* Quarto produces and *how* it looks — before any content is written.
+
+```yaml
+---
+title: "My Document"
+format: html
+---
+```
+
+- Delimited by `---` at the start and end
+- Written in YAML syntax: `key: value` pairs
+- Parsed by Pandoc before rendering
+- Every Quarto document must have one
+
+## YAML Basics
+
+Minimal HTML document:
+
+```yaml
+---
+title: "Study Report"
+author: "Julio"
+date: today
+format: html
+---
+```
+
+- `title` — document title shown in the output
+- `author` — author name(s)
+- `date: today` — inserts current date automatically
+- `format: html` — target output format (`html`, `pdf`, `docx`, `revealjs`, …)
+
+## YAML Options: TOC and More
+
+Extend the `format` block with nested options:
+
+```yaml
+---
+title: "Study Report"
+author: "Julio"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+    code-fold: true
+    self-contained: true
+execute:
+  echo: false
+  warning: false
+---
+```
+
+- `toc` — adds a table of contents
+- `toc-depth` — how many heading levels to include
+- `number-sections` — auto-numbers headings
+- `theme` — HTML visual theme (cosmo, flatly, litera, …)
+- `code-fold` — hides code behind a toggle
+- `self-contained` — bundles everything into one `.html` file
+- `execute: echo/warning` — global chunk options
+
+# The Anatomy of a Code Chunk
+
+## Slide 1: Pure Code (no output shown)
+
+Use `echo: true` to display code, `eval: false` to skip execution — useful for teaching syntax without running it.
+
+````markdown
+```{{r}}
+#| label: prep-data
+#| echo: true
+#| eval: false
+#| warning: false
+#| message: false
+
+pacman::p_load(here, car, dplyr)
+data(Prestige)
+dfstudy1 <- Prestige %>%
+  mutate(
+    prestige_cont = prestige,
+    income_cont   = income,
+    blue_collar   = car::recode(type, "'bc' = 1; else = 0")
+  )
+save(dfstudy1, file = here("input/data/proc/dfstudy1.RData"))
+```
+````
+
+Key options:
+
+- `label` — unique chunk identifier (used in cross-references and error messages)
+- `echo: true` — show the code in the output
+- `eval: false` — do not run the code
+- `warning/message: false` — suppress console noise
+
+## Slide 2: Code + Output
+
+Set `eval: true` to run the code and display results immediately below.
+
+````markdown
+```{{r}}
+#| label: fit-model
+#| echo: true
+#| eval: true
+#| warning: false
+
+load(here("input/data/proc/dfstudy1.RData"))
+model <- lm(prestige_cont ~ income_cont + education, data = dfstudy1)
+summary(model)
+```
+````
+
+Key options:
+
+- `eval: true` — execute the chunk and embed output
+- `results: 'markup'` *(default)* — prints console output as-is
+- `results: 'hide'` — runs code but suppresses printed output
+- `include: false` — runs code silently, hides both code and output
+
+## Slide 3: Code + Figure Options
+
+Control figure size, resolution, alignment, and caption directly in the chunk.
+
+````markdown
+```{{r}}
+#| label: fig-scatter
+#| echo: true
+#| eval: true
+#| fig-width: 7
+#| fig-height: 4
+#| fig-align: center
+#| fig-cap: "Figure 1. Prestige vs. Education"
+#| out-width: "85%"
+#| dpi: 300
+
+library(ggplot2)
+ggplot(dfstudy1, aes(x = education, y = prestige_cont)) +
+  geom_point(alpha = 0.6, size = 3, color = "steelblue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(x = "Years of Education", y = "Prestige Score") +
+  theme_minimal()
+```
+````
+
+Key options:
+
+- `fig-width` / `fig-height` — dimensions in inches
+- `fig-align` — `"center"`, `"left"`, or `"right"`
+- `fig-cap` — caption text (also used for cross-referencing with `@fig-scatter`)
+- `out-width` — scales the image in the output (e.g. `"85%"`)
+- `dpi` — resolution (300 for print quality)
+
+## Slide 4: Code for HTML Regression Tables (texreg)
+
+Use `results: 'asis'` so the raw HTML from `htmlreg()` is passed through directly.
+
+````markdown
+```{{r}}
+#| label: tbl-regression
+#| echo: true
+#| eval: true
+#| results: 'asis'
+#| warning: false
+
+pacman::p_load(texreg)
+
+coef_map <- list(
+  "(Intercept)"         = "Intercept",
+  "income_cont"         = "Income (continuous)",
+  "education"           = "Education (years)",
+  "blue_collarYes"      = "Blue collar (ref. No)"
+)
+
+htmlreg(
+  list(model_1, model_2),
+  custom.coef.map    = coef_map,
+  custom.model.names = c("Model 1", "Model 2"),
+  caption            = "Table 1. OLS models predicting occupational prestige",
+  caption.above      = TRUE
+)
+```
+````
+
+Key options:
+
+- `results: 'asis'` — **required** for `htmlreg()` / `kable()` — passes raw HTML without escaping
+- `echo: true` — show the table-building code
+- `eval: true` — render the table in output
+- Without `results: 'asis'` the HTML tags appear as plain text
+
+## Cross-referencing Figures and Tables
+
+Label chunks with `fig-` or `tbl-` prefix, then cite them with `@`.
+
+::: columns
+
+::: {.column width="40%"}
+**In the chunk header:**
+
+````markdown
+```{{r}}
+#| label: fig-scatter
+#| fig-cap: "Prestige vs. Education"
+```
+````
+
+````markdown
+```{{r}}
+#| label: tbl-descriptives
+#| tbl-cap: "Descriptive statistics"
+```
+````
+
+**In prose:**
+
+```markdown
+As shown in @fig-scatter, prestige
+increases with education.
+
+Descriptive statistics are reported
+in @tbl-descriptives.
+```
+:::
+
+::: {.column width="60%"}
+**Rules:**
+
+- Figure labels **must** start with `fig-`
+- Table labels **must** start with `tbl-`
+- Quarto auto-numbers and hyperlinks all references
+- Works across HTML, PDF, and Word
+
+**Output in HTML:**
+
+> As shown in **Figure 1**, prestige increases with education.
+>
+> Descriptive statistics are reported in **Table 1**.
+
+**Tip:** use `#| fig-cap` and `#| tbl-cap` — not the chunk `label` — for the displayed caption text.
+:::
+
+:::
+
+## Inline Code
+
+Embed live R results directly inside prose — values update automatically on every render.
+
+::: columns
+
+::: {.column width="40%"}
+**Source (`.qmd`):**
+
+```markdown
+The sample contains
+`r nrow(dfstudy1)` occupations.
+
+The mean prestige score is
+`r round(mean(dfstudy1$prestige), 1)`
+(SD = `r round(sd(dfstudy1$prestige), 1)`).
+
+The model explains
+`r scales::percent(summary(model)$r.squared, .1)`
+of the variance in prestige.
+```
+:::
+
+::: {.column width="60%"}
+**Rendered output:**
+
+> The sample contains **102** occupations.
+>
+> The mean prestige score is **46.8** (SD = **17.2**).
+>
+> The model explains **79.8%** of the variance in prestige.
+
+**Why it matters:**
+
+- Numbers never go out of sync with your data
+- No copy-paste errors when revising
+- Works with any R expression: `round()`, `format()`, `scales::percent()`, etc.
+:::
+
+:::

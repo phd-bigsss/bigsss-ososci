@@ -1,0 +1,117 @@
+---
+bibliography: "bib/tesis-magister.bib"
+csl: "bib/apa6.csl"
+lang: es
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
+format:
+  revealjs:
+    #logo: images/edumer.png
+    code-block-height: 82vh
+    slide-number: true  
+    theme: "libs/edumer.scss"
+    auto-stretch: false
+    title-slide-attributes:
+      visibility: false
+    transition: fade
+    transition-speed: slow
+# data-background-image: images/cover.jpg
+# data-background-size: cover
+    auto-play-media: true
+    mathjax: "default"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(knitr)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+```
+
+```{r}
+#| label: packages
+#| include: false
+
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman", repos = "https://cloud.r-project.org")
+
+pacman::p_load(tidyverse, 
+               here,
+               kableExtra)
+
+options(scipen=999)
+rm(list = ls())
+```
+
+
+```{r}
+#| label: data
+#| include: false
+#| echo: false
+#| results: false
+
+# source(file = here("processing/prod_analysis.R"))
+
+```
+
+::: columns
+
+
+::: {.column width="30%"}
+
+</br></br> </br></br></br></br> </br></br></br></br></br></br></br>
+
+![](images/bigsss.jpg)
+
+
+:::
+
+::: {.column .column-right width="70%"}
+
+# Open Social Science: research tools for transparency and reproducibility.  {style="font-size:20px; text-align:right; line-height:1.1;"}
+
+<!-- ### **Asociaciones con estratificación social y creencias en la meritocracia**{style="font-size:35px; text-align:right; line-height:1.1; margin-top:10px;"} -->
+
+------------------------------------------------------------------------
+
+**Julio Iturra-Sanhueza^1,2^**
+
+::: {.blue2 .medium style="line-height:0.4; margin-top:0; margin-bottom:0;"}
+
+**^1^Bremen International Graduate School of Social Sciences, University Bremen** </br>
+
+:::
+
+### April, 2026, Bremen {style="color:#CC003D"}
+
+:::
+:::
+
+
+{{< include 01-introduccion.qmd >}}
+
+{{< include 02-ipo.qmd >}}
+
+{{< include 03-ipo-R.qmd >}}
+
+{{< include 04-markdown-basics.qmd >}} 
+
+{{< include 05-ipo-quarto.qmd >}} 
+
+# Thank you for your attention! 
+
+
+# References
+
+:::: {style="font-size: 75%;"}
+::: {#refs}
+:::
+::::

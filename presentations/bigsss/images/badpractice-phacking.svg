@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">p-hacking</title>
+  <desc id="desc">Illustration card for p-hacking bad practice.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff5f5"/>
+      <stop offset="100%" stop-color="#ffe3e3"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1200" height="700" fill="url(#bg)"/>
+  <rect x="36" y="36" width="1128" height="628" rx="28" fill="none" stroke="#e03131" stroke-width="8"/>
+  <text x="600" y="210" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="76" font-weight="700" fill="#a51111">p-hacking</text>
+  <text x="600" y="300" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="38" fill="#7a1a1a">Trying many analyses until a significant result appears</text>
+  <g transform="translate(230,370)">
+    <rect x="0" y="0" width="740" height="170" rx="18" fill="#ffffff" stroke="#ffa8a8" stroke-width="4"/>
+    <text x="40" y="65" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#5f3b3b">n = 120, model A: p = 0.18</text>
+    <text x="40" y="115" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#5f3b3b">n = 86, model B: p = 0.07</text>
+    <text x="40" y="165" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#d00000">n = 61, model C: p = 0.049  ✓</text>
+  </g>
+</svg>

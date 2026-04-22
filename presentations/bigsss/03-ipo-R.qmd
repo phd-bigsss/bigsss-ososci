@@ -1,0 +1,680 @@
+---
+bibliography: "bib/phd-tesis.bib" 
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(fig.retina = 2, dpi = 300)
+```
+
+# IPO Protocol in R {background-color=#CC003D}
+
+## Creating an RProject
+
+### In RStudio:
+
+1. **File** → **New Project**
+2. Choose **New Directory** 
+3. Select **New Project**
+4. Enter project name (e.g., `bigsss-study`)
+5. Choose parent directory
+6. Click **Create Project**
+
+### Result:
+- `.Rproj` file created in project root
+- New RStudio session opens with correct working directory
+- `here::here()` will work reliably across all subdirectories
+
+## Project Structure
+
+::: {style="font-size: 1.5em;"}
+```
+project/
+├── input/
+│   ├── original/
+│   │   └── data_original.dta
+│   └── data/
+│       └── proc/
+│           ├── dfstudy1.RData
+│           └── table000.html
+├── processing/
+│   └── prod_processing.R 
+├── output/
+│   ├── images/
+│   └── tables/
+└── README.md
+└── main_document.qmd
+└── bigsss-study.Rproj
+```
+:::
+
+## Packages I like
+
+- **Support / workflow**
+  - `here` (project-safe file paths)
+  - `pacman` (package loading/installation)
+
+- **Data manipulation**
+  - `dplyr` (data wrangling)
+  - `car` (datasets and recoding)
+
+- **Data reporting**
+  - `kableExtra` (publication-style tables)
+  - `broom` (tidy model outputs)
+  - `texreg` (regression tables)
+  - `sjPlot` (codebooks)
+  - `vtable` (full descriptive tables)
+  - `ggplot2` (figures and visual reporting)
+
+
+## Installing and loading packages with pacman {auto-animate=true}
+
+**Step 1:** Install `pacman` if not already available
+
+```{r, eval=FALSE, echo=TRUE}
+if (!requireNamespace("pacman", quietly = TRUE))
+  install.packages("pacman", repos = "https://cloud.r-project.org")
+```
+
+## Installing and loading packages with pacman {auto-animate=true}
+
+**Step 2:** Add support / workflow packages
+
+```{r, eval=FALSE, echo=TRUE}
+if (!requireNamespace("pacman", quietly = TRUE))
+  install.packages("pacman", repos = "https://cloud.r-project.org")
+
+pacman::p_load(
+  # Support / workflow
+  pacman, here
+)
+```
+
+## Installing and loading packages with pacman {auto-animate=true}
+
+**Step 3:** Add data manipulation packages
+
+```{r, eval=FALSE, echo=TRUE}
+if (!requireNamespace("pacman", quietly = TRUE))
+  install.packages("pacman", repos = "https://cloud.r-project.org")
+
+pacman::p_load(
+  # Support / workflow
+  pacman, here,
+  # Data manipulation
+  dplyr, car
+)
+```
+
+## Installing and loading packages with pacman {auto-animate=true}
+
+**Step 4:** Add all reporting packages — ready to run!
+
+```{r, eval=TRUE, echo=TRUE}
+if (!requireNamespace("pacman", quietly = TRUE))
+  install.packages("pacman", repos = "https://cloud.r-project.org")
+
+pacman::p_load(
+  # Support / workflow
+  pacman, here,
+  # Data manipulation
+  dplyr, car,
+  # Data reporting
+  kableExtra, broom, texreg, sjPlot, vtable, ggplot2
+)
+```
+
+## Example: Data Processing Script {auto-animate=true}
+
+Load libraries and use the `Prestige` dataset from the `car` package:
+
+```{r, eval=FALSE, echo=TRUE}
+rm(list = ls())
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman", repos = "https://cloud.r-project.org")
+pacman::p_load(here, car, dplyr)
+data(Prestige)
+data_orig <- Prestige
+```
+
+## Example: Data Processing Script {auto-animate=true}
+
+Load libraries and use the `Prestige` dataset from the `car` package:
+
+```{r, eval=TRUE, echo=TRUE}
+rm(list = ls())
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman", repos = "https://cloud.r-project.org")
+pacman::p_load(here, car, dplyr)
+data(Prestige)
+data_orig <- Prestige
+str(data_orig)  # inspect raw data structure
+```
+
+## Recode Variables from Prestige {auto-animate=true}
+
+Create categorical, dummy, and continuous variables:
+
+```{r, eval=FALSE, echo=TRUE}
+dfstudy1 <- data_orig %>%
+  mutate(
+    prestige_cont = prestige,
+    income_cont = income,
+    education_cont = education,
+    women_pct = women
+  ) %>%
+  as.data.frame()
+```
+
+## Recode Variables from Prestige {auto-animate=true}
+
+Create categorical, dummy, and continuous variables:
+
+```{r, eval=FALSE, echo=TRUE}
+dfstudy1 <- data_orig %>%
+  mutate(
+    prestige_cont = prestige,
+    income_cont = income,
+    education_cont = education,
+    women_pct = women,
+    income_cat = car::recode(income, 
+      "1000:8000 = 'Low'; 8001:12000 = 'Mid'; else = 'High'"),
+    education_level = car::recode(education,
+      "lo:10.09 = 'Low'; 10.1:13 = 'Mid'; 13.1:hi = 'High'"),
+    prestige_tier = car::recode(prestige,
+      "0:30.5 = 'Low'; 30.6:60 = 'Mid'; 60.1:100 = 'High'"),
+    blue_collar = car::recode(type, "'bc' = 1; else = 0"),
+    professional = car::recode(type, "'prof' = 1; else = 0"),
+    high_women = car::recode(women, "50:100 = 1; else = 0")
+  ) %>%
+  as.data.frame()
+```
+
+## Recode Variables from Prestige {auto-animate=true}
+
+Create categorical, dummy, and continuous variables:
+
+```{r, eval=TRUE, echo=TRUE}
+dfstudy1 <- data_orig %>%
+  mutate(
+    prestige_cont = prestige,
+    income_cont = income,
+    education_cont = education,
+    women_pct = women,
+    income_cat = car::recode(income, 
+      "1000:8000 = 'Low'; 8001:12000 = 'Mid'; else = 'High'"),
+    education_level = car::recode(education,
+      "lo:10.09 = 'Low'; 10.1:13 = 'Mid'; 13.1:hi = 'High'"),
+    prestige_tier = car::recode(prestige,
+      "0:30.5 = 'Low'; 30.6:60 = 'Mid'; 60.1:100 = 'High'"),
+    blue_collar = car::recode(type, "'bc' = 1; else = 0"),
+    professional = car::recode(type, "'prof' = 1; else = 0"),
+    high_women = car::recode(women, "50:100 = 1; else = 0")
+  ) %>%
+  as.data.frame()
+# create directories and save
+dir.create(here("input/data/proc"), recursive = TRUE, showWarnings = FALSE)
+dir.create(here("output/images"), recursive = TRUE, showWarnings = FALSE)
+dir.create(here("output/tables"), recursive = TRUE, showWarnings = FALSE)
+save(dfstudy1, file = here("input/data/proc/dfstudy1.RData"))
+str(dfstudy1)
+```
+
+## Codebook (HTML) with sjPlot {auto-animate=true}
+
+```{r, eval=FALSE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(sjPlot)
+```
+
+## Codebook (HTML) with sjPlot {auto-animate=true}
+
+```{r, eval=TRUE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(sjPlot)
+sjPlot::view_df(dfstudy1, file = here("input/data/proc/table000.html")) # save codebook as HTML
+```
+
+<div style="transform: scale(0.55); transform-origin: top left; width: 182%; max-height: 70vh; overflow-y: auto;">
+
+```{r, eval=TRUE, echo=FALSE}
+load(here("input/data/proc/dfstudy1.RData"))  
+pacman::p_load(sjPlot)
+sjPlot::view_df(dfstudy1)
+```
+
+</div>
+
+## Full Descriptive Table with st() (Code) {auto-animate=true}
+
+```{r, eval=FALSE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(vtable, kableExtra)
+sumtable_plain <- vtable::st(
+  dfstudy1,
+  summ = c("notNA(x)", "mean(x)", "median(x)", "sd(x)", "min(x)", "max(x)"),
+  summ.names = c("N", "Mean", "Median", "SD", "Min", "Max"),
+  factor.numeric = FALSE,
+  digits = 2,
+  out = "return",
+  title = "Table 001. Full descriptive table of processed variables"
+)
+capture.output(print(sumtable_plain), file = here("output/tables/table001.txt"))
+```
+
+## Full Descriptive Table with st() (Code) {auto-animate=true}
+
+```{r, eval=TRUE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(vtable, kableExtra)
+sumtable_plain <- vtable::st(
+  dfstudy1,
+  summ = c("notNA(x)", "mean(x)", "median(x)", "sd(x)", "min(x)", "max(x)"),
+  summ.names = c("N", "Mean", "Median", "SD", "Min", "Max"),
+  factor.numeric = FALSE,
+  digits = 2,
+  out = "return",
+  title = "Table 001. Full descriptive table of processed variables"
+)
+capture.output(print(sumtable_plain), file = here("output/tables/table001.txt"))
+
+tab001 <- vtable::st(
+  dfstudy1,
+  labels = TRUE,
+  out = "kable",
+  summ = c("notNA(x)", "mean(x)", "median(x)", "sd(x)", "min(x)", "max(x)"),
+  summ.names = c("N", "Mean (%)", "Median", "SD", "Min", "Max"),
+  factor.numeric = FALSE,
+  digits = 2,
+  title = "Table 001. Full descriptive table of processed variables"
+) %>%
+  kable_classic(html_font = "sans", full_width = FALSE) %>%
+  footnote(general = "Numeric variables report mean, median, SD, min, and max. Categorical variables report counts and percentages.")
+kableExtra::save_kable(tab001, here("output/tables/table001.html"))
+```
+
+## Full Descriptive Table with st() (Output: plain text)
+
+```{r, eval=TRUE, echo=FALSE}
+txt_sumtable <- paste(readLines(here("output/tables/table001.txt")), collapse = "\n")
+cat(txt_sumtable)
+```
+
+## Full Descriptive Table with st() (Output: HTML)
+
+<div style="transform: scale(0.58); transform-origin: top left; width: 172%; max-height: 70vh; overflow-y: auto;">
+
+```{r, eval=TRUE, echo=FALSE}
+tab001
+```
+
+</div>
+
+## Univariate Visualizations (Code) {auto-animate=true}
+
+```{r, eval=FALSE, echo=TRUE}
+#| results: 'hide'
+#| fig-show: 'hide'
+library(ggplot2)
+load(here("input/data/proc/dfstudy1.RData"))
+p_hist <- ggplot(dfstudy1, aes(x = prestige_cont)) +
+  geom_histogram(bins = 15, fill = "steelblue", alpha = 0.7) +
+  labs(title = "Figure 001. Distribution of Prestige Score", x = "Prestige", y = "Frequency") +
+  theme_minimal()
+ggsave(here("output/images/figure001.png"), p_hist, width = 8, height = 5, dpi = 600)
+```
+
+## Univariate Visualizations (Code) {auto-animate=true}
+
+```{r, eval=TRUE, echo=TRUE}
+#| results: 'hide'
+#| fig-show: 'hide'
+library(ggplot2)
+load(here("input/data/proc/dfstudy1.RData"))
+p_hist <- ggplot(dfstudy1, aes(x = prestige_cont)) +
+  geom_histogram(bins = 15, fill = "steelblue", alpha = 0.7) +
+  labs(title = "Figure 001. Distribution of Prestige Score", x = "Prestige", y = "Frequency") +
+  theme_minimal()
+ggsave(here("output/images/figure001.png"), p_hist, width = 8, height = 5, dpi = 600)
+p_bar <- ggplot(dfstudy1, aes(x = income_cat, fill = income_cat)) +
+  geom_bar(show.legend = FALSE) +
+  labs(title = "Figure 002. Distribution of Income Categories", x = "Income Category", y = "Count") +
+  theme_minimal()
+ggsave(here("output/images/figure002.png"), p_bar, width = 8, height = 5, dpi = 600)
+```
+
+## Univariate Visualizations (Output)
+
+```{r, eval=TRUE, echo=TRUE}
+#| include: true
+#| layout-ncol: 2
+#| width: 100%
+#| height: 100%
+#| fig-align: center
+#| fig-cap: "Figures 001-002. Univariate visualizations" 
+p_hist
+p_bar 
+```
+
+## Bivariate Visualizations (Code) {auto-animate=true}
+
+```{r, eval=FALSE, echo=TRUE}
+#| results: 'hide'
+#| fig-show: 'hide'
+p_box <- ggplot(dfstudy1, aes(x = income_cat, y = prestige_cont, fill = income_cat)) +
+  geom_boxplot(alpha = 0.7, show.legend = FALSE) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  labs(title = "Figure 003. Prestige Score by Income Category", x = "Income Category", y = "Prestige Score") +
+  theme_minimal()
+ggsave(here("output/images/figure003.png"), p_box, width = 8, height = 5, dpi = 600)
+```
+
+## Bivariate Visualizations (Code) {auto-animate=true}
+
+```{r, eval=TRUE, echo=TRUE}
+#| results: 'hide'
+#| fig-show: 'hide'
+p_box <- ggplot(dfstudy1, aes(x = income_cat, y = prestige_cont, fill = income_cat)) +
+  geom_boxplot(alpha = 0.7, show.legend = FALSE) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  labs(title = "Figure 003. Prestige Score by Income Category", x = "Income Category", y = "Prestige Score") +
+  theme_minimal()
+ggsave(here("output/images/figure003.png"), p_box, width = 8, height = 5, dpi = 600)
+p_scatter <- ggplot(dfstudy1, aes(x = education_cont, y = prestige_cont)) +
+  geom_point(alpha = 0.6, size = 3, color = "steelblue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(title = "Figure 004. Prestige vs Education", x = "Years of Education", y = "Prestige Score") +
+  theme_minimal()
+ggsave(here("output/images/figure004.png"), p_scatter, width = 8, height = 5, dpi = 600)
+```
+
+## Bivariate Visualizations (Output)
+
+```{r, eval=TRUE, echo=TRUE}
+#| layout-ncol: 2
+p_box
+p_scatter
+```
+
+## Regression Analysis (Code) {auto-animate=true}
+
+Model prestige as a function of income, education, women %, and blue collar status:
+
+```{r, eval=FALSE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(broom, texreg)
+df_reg <- dfstudy1 %>%
+  mutate(
+    income_cat = factor(income_cat, levels = c("Low", "Mid", "High")),
+    education_level = factor(education_level, levels = c("Low", "Mid", "High")),
+    high_women = factor(high_women, levels = c(0, 1), labels = c("No", "Yes")),
+    blue_collar = factor(blue_collar, levels = c(0, 1), labels = c("No", "Yes"))
+  )
+```
+
+## Regression Analysis (Code) {auto-animate=true}
+
+Model prestige as a function of income, education, women %, and blue collar status:
+
+```{r, eval=FALSE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(broom, texreg)
+df_reg <- dfstudy1 %>%
+  mutate(
+    income_cat = factor(income_cat, levels = c("Low", "Mid", "High")),
+    education_level = factor(education_level, levels = c("Low", "Mid", "High")),
+    high_women = factor(high_women, levels = c(0, 1), labels = c("No", "Yes")),
+    blue_collar = factor(blue_collar, levels = c(0, 1), labels = c("No", "Yes"))
+  )
+model_1 <- lm(prestige_cont ~ income_cont + education_cont, data = df_reg)
+model_2 <- lm(prestige_cont ~ income_cont + education_cont + women_pct + blue_collar, data = df_reg)
+model_3 <- lm(prestige_cont ~ income_cat + education_level, data = df_reg)
+model_4 <- lm(prestige_cont ~ income_cat + education_level + high_women + blue_collar, data = df_reg)
+model <- model_4
+model_summary <- summary(model)
+```
+
+## Regression Analysis (Code) {auto-animate=true}
+
+Model prestige as a function of income, education, women %, and blue collar status:
+
+```{r, eval=TRUE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(broom, texreg)
+df_reg <- dfstudy1 %>%
+  mutate(
+    income_cat = factor(income_cat, levels = c("Low", "Mid", "High")),
+    education_level = factor(education_level, levels = c("Low", "Mid", "High")),
+    high_women = factor(high_women, levels = c(0, 1), labels = c("No", "Yes")),
+    blue_collar = factor(blue_collar, levels = c(0, 1), labels = c("No", "Yes"))
+  )
+model_1 <- lm(prestige_cont ~ income_cont + education_cont, data = df_reg)
+model_2 <- lm(prestige_cont ~ income_cont + education_cont + women_pct + blue_collar, data = df_reg)
+model_3 <- lm(prestige_cont ~ income_cat + education_level, data = df_reg)
+model_4 <- lm(prestige_cont ~ income_cat + education_level + high_women + blue_collar, data = df_reg)
+model <- model_4
+model_summary <- summary(model)
+# Compare model fit statistics across all 4 models
+compare_models <- bind_rows(
+  glance(model_1) %>% mutate(model = "Continuous M1"),
+  glance(model_2) %>% mutate(model = "Continuous M2"),
+  glance(model_3) %>% mutate(model = "Categorical M3"),
+  glance(model_4) %>% mutate(model = "Categorical M4")
+) %>%
+  select(model, nobs, r.squared, adj.r.squared, sigma, AIC, BIC)
+```
+
+## Regression Analysis (Output)
+
+```{r, eval=TRUE, echo=TRUE}
+model_summary # Summary of the final model
+compare_models # Comparison of model fit statistics across all 4 models
+```
+
+# texreg for regression tables
+
+## Regression Table with screenreg (Code) {auto-animate=true}
+
+```{r, eval=FALSE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(texreg)
+coef_map <- list(
+  "(Intercept)" = "Intercept",
+  "income_cont" = "Income (continuous)",
+  "income_catMid" = "Income: Mid (ref. Low)",
+  "income_catHigh" = "Income: High (ref. Low)",
+  "education_levelMid" = "Education: Mid (ref. Low)",
+  "education_levelHigh" = "Education: High (ref. Low)",
+  "high_womenYes" = "High women share: Yes (ref. No)",
+  "blue_collarYes" = "Blue collar: Yes (ref. No)"
+)
+```
+
+## Regression Table with screenreg (Code) {auto-animate=true}
+
+```{r, eval=TRUE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(texreg)
+coef_map <- list(
+  "(Intercept)" = "Intercept",
+  "income_cont" = "Income (continuous)",
+  "income_catMid" = "Income: Mid (ref. Low)",
+  "income_catHigh" = "Income: High (ref. Low)",
+  "education_levelMid" = "Education: Mid (ref. Low)",
+  "education_levelHigh" = "Education: High (ref. Low)",
+  "high_womenYes" = "High women share: Yes (ref. No)",
+  "blue_collarYes" = "Blue collar: Yes (ref. No)"
+)
+screenreg(list(model_1, model_2, model_3, model_4),
+          file = here("output/tables/table002.txt"),
+          caption = "Table 002. Comparison of continuous and categorical model specifications (4 models)",
+          custom.coef.map = coef_map,
+          custom.header = list("Continuous" = 1:2, "Categorical" = 3:4),
+          custom.note = "%stars. Data source: `Prestige` dataset from the `car` package.")
+```
+
+## Regression Table with screenreg (Output)
+
+```{r, eval=TRUE, echo=FALSE}
+txt_reg <- paste(readLines(here("output/tables/table002.txt")), collapse = "\n")
+cat(txt_reg)
+```
+
+## Regression Table with htmlreg (Code) {auto-animate=true}
+
+```{r, eval=FALSE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(texreg)
+htmlreg(list(model_1, model_2, model_3, model_4),
+    file = here("output/tables/table002.html"),
+  caption = "Table 002. Comparison of continuous and categorical model specifications (4 models)",
+        caption.above = TRUE,
+  custom.coef.map = coef_map
+)
+```
+
+## Regression Table with htmlreg (Code) {auto-animate=true}
+
+```{r, eval=TRUE, echo=TRUE}
+#| results: 'hide'
+pacman::p_load(texreg)
+htmlreg(list(model_1, model_2, model_3, model_4),
+    file = here("output/tables/table002.html"),
+  caption = "Table 002. Comparison of continuous and categorical model specifications (4 models)",
+        caption.above = TRUE,
+  custom.coef.map = coef_map,
+  custom.header = list("Continuous" = 1:2, 
+                        "Categorical" = 3:4),
+  custom.note = "%stars. Data source: `Prestige` dataset from the `car` package.")
+```
+
+## Regression Table with htmlreg (Output)
+
+<div style="max-height:none; overflow:visible; transform: scale(0.58); transform-origin: top left; width: 172%;">
+
+```{r, eval=TRUE, echo=FALSE}
+htmltools::includeHTML(here("output/tables/table002.html"))
+```
+
+</div>
+
+# kableExtra for tables
+
+## kableExtra table by occupation (Code) {auto-animate=true}
+
+```{r, eval=FALSE, echo=TRUE}
+#| label: example-kableextra
+#| results: 'hide'
+pacman::p_load(kableExtra)
+tab_occ <- dfstudy1 %>%
+  group_by(type) %>%
+  summarise(
+    mean_income = mean(income_cont, na.rm = TRUE),
+    mean_education = mean(education_cont, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+## kableExtra table by occupation (Code) {auto-animate=true}
+
+```{r, eval=TRUE, echo=TRUE}
+#| label: example-kableextra2
+#| results: 'hide'
+pacman::p_load(kableExtra)
+tab_occ <- dfstudy1 %>%
+  group_by(type) %>%
+  summarise(
+    mean_income = mean(income_cont, na.rm = TRUE),
+    mean_education = mean(education_cont, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(type = dplyr::case_when(
+    type == "bc" ~ "Blue collar",
+    type == "prof" ~ "Professional",
+    type == "wc" ~ "white collar",
+    is.na(type) ~ "Missing",
+    TRUE ~ "Other"
+  )) %>%
+  arrange(match(type, c("Blue collar", "Professional", 
+                        "white collar", "Missing", "Other"))) %>%
+  mutate(occupation_group = if_else(type == "Blue collar", "Manual", "Non-manual")) %>%
+  mutate(across(c(mean_income, mean_education), ~ round(.x, 2)))
+```
+
+## kableExtra table by occupation (Output: raw summary)
+
+```{r, eval=TRUE, echo=TRUE}
+tab_occ
+```
+
+## kableExtra styled tables (Code) {auto-animate=true}
+
+```{r, eval=FALSE, echo=TRUE}
+#| label: example-kableextra-styled
+#| results: 'hide'
+tab_occ_html <- tab_occ %>%
+  select(type, mean_income, mean_education) %>%
+  kbl(
+    col.names = c("Occupation type", "Average income", "Average education"),
+    caption = "Table 003. Average income and education by occupation type (striped)",
+    align = c("l", "r", "r")
+  ) %>%
+  kable_styling(full_width = FALSE, font_size = 16, bootstrap_options = c("striped", "condensed")) %>%
+  column_spec(1:3, extra_css = "font-family: sans-serif;") %>%
+  add_header_above(c(" " = 1, "Averages by occupation type" = 2)) %>%
+  group_rows("Manual occupation", 1, 1) %>%
+  group_rows("Non-manual occupations", 2, 3) %>%
+  footnote(general = "Means are computed from the Prestige data (car package).", 
+           number = "Income is measured in dollars; education in years.")
+save_kable(tab_occ_html, file = here("output/tables/table003.html"))
+```
+
+## kableExtra styled tables (Code) {auto-animate=true}
+
+```{r, eval=TRUE, echo=TRUE}
+#| label: example-kableextra-styled2
+#| results: 'hide'
+tab_occ_html <- tab_occ %>%
+  select(type, mean_income, mean_education) %>%
+  kbl(
+    col.names = c("Occupation type", "Average income", "Average education"),
+    caption = "Table 003. Average income and education by occupation type (striped)",
+    align = c("l", "r", "r")
+  ) %>%
+  kable_styling(full_width = FALSE, font_size = 16, bootstrap_options = c("striped", "condensed")) %>%
+  column_spec(1:3, extra_css = "font-family: sans-serif;") %>%
+  add_header_above(c(" " = 1, "Averages by occupation type" = 2)) %>%
+  group_rows("Manual occupation", 1, 1) %>%
+  group_rows("Non-manual occupations", 2, 3) %>%
+  footnote(general = "Means are computed from the Prestige data (car package).", 
+           number = "Income is measured in dollars; education in years.")
+save_kable(tab_occ_html, file = here("output/tables/table003.html"))
+
+tab_occ_classic <- tab_occ %>%
+  select(type, mean_income, mean_education) %>%
+  kbl(
+    col.names = c("Occupation type", "Average income", "Average education"),
+    caption = "Table 004. Average income and education by occupation type (kable_classic)",
+    align = c("l", "r", "r")
+  ) %>%
+  kable_classic(full_width = FALSE, html_font = "sans") %>%
+  kable_styling(full_width = FALSE, font_size = 16) %>%
+  add_header_above(c(" " = 1, "Averages by occupation type" = 2)) %>%
+  group_rows("Manual occupation", 1, 1) %>%
+  group_rows("Non-manual occupations", 2, 3) %>%
+  footnote(general = "Classic style with grouped rows.", 
+          number = "Categories: Blue collar, Professional, white collar.")
+save_kable(tab_occ_classic, file = here("output/tables/table004.html"))
+```
+
+## kableExtra table by occupation (Output: Striped)
+
+```{r, eval=TRUE, echo=TRUE}
+tab_occ_html
+```
+
+## kableExtra table by occupation (Output: kable_classic)
+
+```{r, eval=TRUE, echo=TRUE}
+tab_occ_classic
+```
+
+# Let put all together {background-color=#CC003D}
+

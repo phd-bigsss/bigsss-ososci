@@ -1,0 +1,33 @@
+          Variable   N Mean Median   SD  Min   Max
+1        education 102   11     11  2.7  6.4    16
+2           income 102 6798   5930 4246  611 25879
+3            women 102   29     14   32    0    98
+4         prestige 102   47     44   17   15    87
+5           census 102 5402   5135 2645 1113  9517
+6             type  98                            
+7           ... bc  44  45%                       
+8         ... prof  31  32%                       
+9           ... wc  23  23%                       
+10   prestige_cont 102   47     44   17   15    87
+11     income_cont 102 6798   5930 4246  611 25879
+12  education_cont 102   11     11  2.7  6.4    16
+13       women_pct 102   29     14   32    0    98
+14      income_cat 102                            
+15        ... High  11  11%                       
+16         ... Low  70  69%                       
+17         ... Mid  21  21%                       
+18 education_level 102                            
+19        ... High  23  23%                       
+20         ... Low  48  47%                       
+21         ... Mid  31  30%                       
+22   prestige_tier 102                            
+23        ... High  24  24%                       
+24         ... Low  20  20%                       
+25         ... Mid  58  57%                       
+26     blue_collar 102                            
+27           ... 0  58  57%                       
+28           ... 1  44  43%                       
+29    professional 102                            
+30           ... 0  71  70%                       
+31           ... 1  31  30%                       
+32      high_women 102 0.26      0 0.44    0     1
