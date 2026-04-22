@@ -9,6 +9,10 @@ bibliography: "bib/phd-tesis.bib"
 
 ![](images/afternoon.PNG){width="70%" fig-align="center"}
 
+## Materials
+
+![](images/qrcode.svg){width="40%" fig-align="center"}
+
 
 ## Background and motivation
 

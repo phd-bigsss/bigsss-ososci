@@ -108,7 +108,10 @@ rm(list = ls())
 
 # Thank you for your attention
 
+![](images/qrcode.svg){width="40%" fig-align="center"}
+
 # References
+
 
 :::: {style="font-size: 75%;"}
 ::: {#refs}
