@@ -140,7 +140,7 @@ Leave a blank line before lists so they render correctly in Quarto.
 ::: {.column width="60%"}
 [Replication repository](https://osf.io/)
 
-![Distribution of income](images/figure002.png){width="10%" fig-align="center"}
+![Distribution of income](images/figure002.png){width="40%" fig-align="center"}
 
 [Figure note](#figure-note)
 :::

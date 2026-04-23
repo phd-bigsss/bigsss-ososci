@@ -65,7 +65,7 @@ Growing concerns about openness and transparency have highlighted three problema
 
 :::
 
-## What does an open social science look like?
+## How does an open social science look like?
 
 ::: {.callout-note appearance="minimal" icon="true"}
 
