@@ -27,6 +27,7 @@ pacman::p_load(
   texreg
 )
 
+
 # 1. Load processed data ----
 load(here("input/data/proc/dfstudy1.RData"))
 message("Loaded: dfstudy1  (", nrow(dfstudy1), " rows)")

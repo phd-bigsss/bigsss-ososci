@@ -1,6 +1,6 @@
 ---
 title: "Occupational Prestige: A Reproducible Report"
-author: "Julio"
+author: "Julio Iturra-Sanhueza"
 date: today
 abstract: |
   This report examines the determinants of occupational prestige using the Prestige dataset (Duncan, 1961), which covers 102 Canadian occupations. We analyse how income, education, gender composition, and occupational type predict prestige scores through descriptive statistics, visualizations, and OLS regression models. Results show that both income and education are strong positive predictors, with the full model explaining approximately 80% of the variance in prestige. The report is fully reproducible and rendered with Quarto.
@@ -8,7 +8,7 @@ format:
   html:
     toc: true
     toc-depth: 3
-    number-sections: true
+    number-sections: true 
     theme: cosmo
     code-fold: true
     self-contained: true
@@ -17,6 +17,8 @@ execute:
   warning: false
   message: false
 bibliography: "presentations/bigsss/bib/phd-tesis.bib"
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r}

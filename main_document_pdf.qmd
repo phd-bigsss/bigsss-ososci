@@ -229,7 +229,7 @@ texreg(
   list(model_1, model_2, model_3, model_4),
   custom.coef.map    = coef_map,
   custom.model.names = c("M1 Cont.", "M2 Cont.", "M3 Cat.", "M4 Cat."),
-  caption            = "OLS regression models predicting occupational prestige",
+#  caption            = "OLS regression models predicting occupational prestige",
   caption.above      = TRUE,
   booktabs           = TRUE,
   use.packages       = FALSE
