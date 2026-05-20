@@ -2,7 +2,7 @@
 bibliography: "bib/phd-tesis.bib" 
 ---
 
-# Version control {background-color="#f8f9fa"}
+# Version control {background-color="#aa0000"}
 
 ## Where we left off
 
@@ -83,8 +83,6 @@ Think of version control as a **permanent, annotated undo history** — but one 
 - Works across an entire folder, not just one file
 - Can be shared with collaborators and the scientific community
 
-
-
 ---
 
 ## Why this matters for open science
@@ -113,7 +111,7 @@ Version control is what makes them *operational*:
 
 ::: {.column width="48%"}
 
-![alt](images/linus.PNG){width="100%"}
+![](images/linus.PNG){width="100%"}
 
 Linus Torvalds created **Git** in 2005 to manage the development of the Linux kernel.
 :::
@@ -134,9 +132,9 @@ In this workshop, we will use Git through RStudio's built-in terminal and Git pa
 
 ## Git ?
 
-![alt](images/gitflow.PNG)
+![](images/gitflow.PNG)
 
-# Core vocabulary {background-color="#f8f9fa"}
+# Core vocabulary {background-color="#aa0000"}
 
 *Five concepts you need before opening the terminal*
 
@@ -260,23 +258,21 @@ This lets you commit only part of your changes — useful when you have fixed tw
 
 A **branch** is a parallel timeline in the same repository.
 
-<!-- ```
-main    ──●──●──●──●──●──────────────────●  (published version)
-                    \                   /
-feature              ●──●──●──●──●──●    (experimental analysis)
-``` -->
+:::: {.columns}
 
-![](images/branch.avif){width="75%"}
-
-. . .
-
+::: {.column width="48%"}
 Branches let you:
 
 - Try something risky without breaking the main version
 - Work on two papers in the same repo simultaneously
 - Collaborate without overwriting each other
+:::
 
-. . .
+::: {.column width="48%"}
+![](images/branch.avif){width="100%"}
+:::
+
+::::
 
 ::: {.callout-note}
 We won't practice branching hands-on today — but knowing the concept matters for understanding GitHub's interface.

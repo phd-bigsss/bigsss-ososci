@@ -2,6 +2,8 @@
 bibliography: "bib/phd-tesis.bib" 
 ---
 
+# Repositories and GitHub {background-color="#aa0000"}
+
 ## So far today
 
 We have a local Git repository with a commit history:
@@ -23,9 +25,7 @@ This history lives **only on your laptop**.
 > How does a collaborator access your project?  
 > How does a reviewer reproduce your analysis?
 
----
-
-# Git in context {background-color="#f8f9fa"}
+# Git in context {background-color="#aa0000"}
 
 *Where Git fits in the landscape*
 
@@ -50,7 +50,35 @@ You can use Git without GitHub (local-only history).
 GitHub requires Git to work.  
 Other platforms exist: **GitLab**, **Bitbucket** — same Git underneath, different interface.
 
----
+## Brief history of GitHub
+
+:::: {.columns}
+
+::: {.column width="55%"}
+Founded in **2008** by Tom Preston-Werner, Chris Wanstrath, and PJ Hyett as a platform for hosting Git repositories online.
+
+. . .
+
+Quickly became the dominant platform for open-source software development.
+
+. . .
+
+In **2018** acquired by Microsoft for **$7.5 billion**.
+
+. . .
+
+Today, GitHub hosts over **100 million repositories** and is widely used in both industry and academia.
+:::
+
+::: {.column width="40%"}
+
+. . .
+
+![](images/msgithub.jpg){width="100%"}
+:::
+
+::::
+
 
 ## Why Git became the standard
 
@@ -79,7 +107,7 @@ bigsss-repo/           1. git init / existing commits
       ↓
 github.com/phd-bigsss/bigsss-repo   3. git push
       ↓
-phd-bigsss.github.io/bigsss-repo    4. quarto publish gh-pages
+phd-bigsss.github.io/bigsss-repo    4. publish with GitHub Pages
 ```
 
 . . .
@@ -112,7 +140,7 @@ We use GitHub because it is the most widely used platform in research and scienc
 
 ---
 
-![alt](images/localremote.png)
+![](images/localremote.png)
 ---
 
 ## A tour of the GitHub interface
@@ -136,7 +164,7 @@ A well-written README is worth the five minutes it takes.
 
 ---
 
-![alt](images/githubinterface.PNG)
+![](images/githubinterface.PNG)
 ---
 
 ## Public vs. private repositories
@@ -167,8 +195,6 @@ A well-written README is worth the five minutes it takes.
 
 > A common workflow: develop privately, make public at submission or publication.  
 > Today we use a **public** repo so GitHub Pages works without extra configuration.
-
----
 
 # Remote workflow vocabulary {background-color="#f8f9fa"}
 
@@ -382,6 +408,43 @@ gitcreds::set_gitcreds()         # prompts for the token → stores it securely
 ::: {.callout-important}
 You do this **once per machine**. After that, `git push` and `git pull` just work — from the terminal or from RStudio.
 :::
+
+---
+
+## Authentication — the R way (step by step)
+
+**1. Install the packages**
+
+```r
+install.packages(c("usethis", "gitcreds"))
+```
+
+. . .
+
+**2. Create the token**
+
+```r
+usethis::create_github_token()
+```
+
+Browser opens → give the token a name (e.g. `"my-laptop"`) → set expiration → click **Generate token** → copy the `ghp_...` string. GitHub will never show it again.
+
+. . .
+
+**3. Store the token**
+
+```r
+gitcreds::set_gitcreds()
+# → Enter password or token: ghp_xxxxxxxxxxxx
+```
+
+. . .
+
+**4. Verify**
+
+```r
+gitcreds::gitcreds_get()   # should show your username and a masked token
+```
 
 ---
 

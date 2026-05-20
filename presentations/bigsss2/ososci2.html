@@ -251,7 +251,7 @@
 <h2>Materials</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/qrcode2.svg" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
+<p><img data-src="images/qrcode.svg" class="quarto-figure quarto-figure-center" style="width:40.0%"></p>
 </figure>
 </div>
 </section>
@@ -306,7 +306,7 @@
 <p><img data-src="images/dimensions.png" style="width:100.0%"></p>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>Own translation based on Castillo (2020) at the LISA Lab from COES. See <a href="https://lisa-coes.github.io/ipo/index.html">IPO Protocol</a> for more details.</p></li></ol></aside></section>
 <section>
-<section id="version-control" class="title-slide slide level1 center" data-background-color="#f8f9fa">
+<section id="version-control" class="title-slide slide level1 center" data-background-color="#aa0000">
 <h1>Version control</h1>
 
 </section>
@@ -424,12 +424,7 @@ paper_v2_FINAL_FINAL_submitted.docx</code></pre>
 <h2>Git ?</h2>
 <div class="columns">
 <div class="column" style="width:48%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
 <p><img data-src="images/linus.PNG" style="width:100.0%"></p>
-<figcaption>alt</figcaption>
-</figure>
-</div>
 <p>Linus Torvalds created <strong>Git</strong> in 2005 to manage the development of the Linux kernel.</p>
 </div><div class="column" style="width:48%;">
 <p>Today, Git is the <strong>de facto standard</strong> for version control in software development — and increasingly in research.</p>
@@ -440,15 +435,10 @@ You can use it through a terminal or through graphical interfaces (like RStudio�
 </section>
 <section id="git-1" class="slide level2">
 <h2>Git ?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
 <p><img data-src="images/gitflow.PNG"></p>
-<figcaption>alt</figcaption>
-</figure>
-</div>
 </section></section>
 <section>
-<section id="core-vocabulary" class="title-slide slide level1 center" data-background-color="#f8f9fa">
+<section id="core-vocabulary" class="title-slide slide level1 center" data-background-color="#aa0000">
 <h1>Core vocabulary</h1>
 <p><em>Five concepts you need before opening the terminal</em></p>
 </section>
@@ -537,21 +527,17 @@ Committed snapshots</p>
 <section id="branch" class="slide level2">
 <h2>4. Branch</h2>
 <p>A <strong>branch</strong> is a parallel timeline in the same repository.</p>
-<!-- ```
-main    ──●──●──●──●──●──────────────────●  (published version)
-                    \                   /
-feature              ●──●──●──●──●──●    (experimental analysis)
-``` -->
-<p><img data-src="images/branch.avif" style="width:75.0%"></p>
-<div class="fragment">
+<div class="columns">
+<div class="column" style="width:48%;">
 <p>Branches let you:</p>
 <ul>
 <li>Try something risky without breaking the main version</li>
 <li>Work on two papers in the same repo simultaneously</li>
 <li>Collaborate without overwriting each other</li>
 </ul>
-</div>
-<div class="fragment">
+</div><div class="column" style="width:48%;">
+<p><img data-src="images/branch.avif" style="width:100.0%"></p>
+</div></div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -562,7 +548,6 @@ feature              ●──●──●──●──●──●    (experi
 </div>
 <div class="callout-content">
 <p>We won’t practice branching hands-on today — but knowing the concept matters for understanding GitHub’s interface.</p>
-</div>
 </div>
 </div>
 </div>
@@ -691,6 +676,11 @@ phd-bigsss.github.io/bigsss-repo   ← live website</code></pre>
 <li>Chacon, S. &amp; Straub, B. (2014). <em>Pro Git</em> (free). <a href="https://git-scm.com/book" class="uri">https://git-scm.com/book</a></li>
 <li>Quarto publish documentation. <a href="https://quarto.org/docs/publishing/github-pages.html" class="uri">https://quarto.org/docs/publishing/github-pages.html</a></li>
 </ul>
+</section></section>
+<section>
+<section id="repositories-and-github" class="title-slide slide level1 center" data-background-color="#aa0000">
+<h1>Repositories and GitHub</h1>
+
 </section>
 <section id="so-far-today" class="slide level2">
 <h2>So far today</h2>
@@ -709,12 +699,9 @@ How does a collaborator access your project?<br>
 How does a reviewer reproduce your analysis?</p>
 </blockquote>
 </div>
-</section>
-<section class="slide level2">
-
 </section></section>
 <section>
-<section id="git-in-context" class="title-slide slide level1 center" data-background-color="#f8f9fa">
+<section id="git-in-context" class="title-slide slide level1 center" data-background-color="#aa0000">
 <h1>Git in context</h1>
 <p><em>Where Git fits in the landscape</em></p>
 </section>
@@ -755,6 +742,22 @@ GitHub requires Git to work.<br>
 Other platforms exist: <strong>GitLab</strong>, <strong>Bitbucket</strong> — same Git underneath, different interface.</p>
 </div>
 </section>
+<section id="brief-history-of-github" class="slide level2">
+<h2>Brief history of GitHub</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p>Founded in <strong>2008</strong> by Tom Preston-Werner, Chris Wanstrath, and PJ Hyett as a platform for hosting Git repositories online.</p>
+<p>. . .</p>
+<p>Quickly became the dominant platform for open-source software development.</p>
+<p>. . .</p>
+<p>In <strong>2018</strong> acquired by Microsoft for <strong>$7.5 billion</strong>.</p>
+<p>. . .</p>
+<p>Today, GitHub hosts over <strong>100 million repositories</strong> and is widely used in both industry and academia.</p>
+</div><div class="column" style="width:40%;">
+<p>. . .</p>
+<p><img data-src="images/msgithub.jpg" style="width:100.0%"></p>
+</div></div>
+</section>
 <section id="why-git-became-the-standard" class="slide level2">
 <h2>Why Git became the standard</h2>
 <p>Git was created in 2005 for the Linux kernel — one of the largest software projects in the world.</p>
@@ -778,7 +781,7 @@ Other platforms exist: <strong>GitLab</strong>, <strong>Bitbucket</strong> — s
       ↓
 github.com/phd-bigsss/bigsss-repo   3. git push
       ↓
-phd-bigsss.github.io/bigsss-repo    4. quarto publish gh-pages</code></pre>
+phd-bigsss.github.io/bigsss-repo    4. publish with GitHub Pages</code></pre>
 <div class="fragment">
 <p>Each step builds on the last.<br>
 At the end, editing a file and running two commands updates your live website.</p>
@@ -801,8 +804,8 @@ bigsss-study/                  github.com/phd-bigsss/bigsss-repo
 We use GitHub because it is the most widely used platform in research and science.</p>
 </div>
 </section>
-<section id="alt" class="slide level2">
-<h2><img data-src="images/localremote.png" alt="alt"></h2>
+<section id="section-3" class="slide level2">
+<h2><img data-src="images/localremote.png"></h2>
 </section>
 <section id="a-tour-of-the-github-interface" class="slide level2">
 <h2>A tour of the GitHub interface</h2>
@@ -833,8 +836,8 @@ A well-written README is worth the five minutes it takes.</p>
 </div>
 </div>
 </section>
-<section id="alt-1" class="slide level2">
-<h2><img data-src="images/githubinterface.PNG" alt="alt"></h2>
+<section id="section-4" class="slide level2">
+<h2><img data-src="images/githubinterface.PNG"></h2>
 </section>
 <section id="public-vs.-private-repositories" class="slide level2">
 <h2>Public vs.&nbsp;private repositories</h2>
@@ -862,9 +865,6 @@ A well-written README is worth the five minutes it takes.</p>
 Today we use a <strong>public</strong> repo so GitHub Pages works without extra configuration.</p>
 </blockquote>
 </div>
-</section>
-<section class="slide level2">
-
 </section></section>
 <section>
 <section id="remote-workflow-vocabulary" class="title-slide slide level1 center" data-background-color="#f8f9fa">
@@ -1039,7 +1039,7 @@ Instead, it requires a <strong>Personal Access Token (PAT)</strong> — a long r
 <p>This tells Git to save credentials to a plain file on disk after the first use.</p>
 <div class="fragment">
 <p><strong>Step 3 — On your first <code>git push</code>, Git will prompt:</strong></p>
-<pre><code>Username: phd-bigsss
+<pre><code>Username: phdstudent
 Password: ghp_xxxxxxxxxxxxxxxxxxxx   ← paste your PAT here (not your GitHub password)</code></pre>
 <p>After this, Git reuses the stored token automatically.</p>
 </div>
@@ -1072,6 +1072,25 @@ Password: ghp_xxxxxxxxxxxxxxxxxxxx   ← paste your PAT here (not your GitHub pa
 </div>
 </div>
 </div>
+</div>
+</section>
+<section id="authentication-the-r-way-step-by-step" class="slide level2">
+<h2>Authentication — the R way (step by step)</h2>
+<p><strong>1. Install the packages</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"usethis"</span>, <span class="st">"gitcreds"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p><strong>2. Create the token</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Browser opens → give the token a name (e.g.&nbsp;<code>"my-laptop"</code>) → set expiration → click <strong>Generate token</strong> → copy the <code>ghp_...</code> string. GitHub will never show it again.</p>
+</div>
+<div class="fragment">
+<p><strong>3. Store the token</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>gitcreds<span class="sc">::</span><span class="fu">set_gitcreds</span>()</span>
+<span id="cb33-2"><a href=""></a><span class="co"># → Enter password or token: ghp_xxxxxxxxxxxx</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<p><strong>4. Verify</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_get</span>()   <span class="co"># should show your username and a masked token</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="collaboration-a-brief-look-ahead" class="slide level2">
@@ -1167,18 +1186,23 @@ Then we move to making it a <strong>website</strong>.</p>
 <li>GitHub Docs — Getting started. <a href="https://docs.github.com/en/get-started" class="uri">https://docs.github.com/en/get-started</a></li>
 <li><code>usethis</code> package documentation. <a href="https://usethis.r-lib.org" class="uri">https://usethis.r-lib.org</a></li>
 </ul>
+</section></section>
+<section>
+<section id="github-pages" class="title-slide slide level1 center" data-background-color="#aa0000">
+<h1>GitHub Pages</h1>
+
 </section>
 <section id="where-we-are" class="slide level2">
 <h2>Where we are</h2>
 <p>At this point you have:</p>
 <div class="fragment">
-<p>✅ &nbsp; A reproducible project following the IPO protocol (<code>bigsss-study/</code>)</p>
+<p>✅ &nbsp; A reproducible project following the IPO protocol (<code>bigsss-repo/</code>)</p>
 </div>
 <div class="fragment">
 <p>✅ &nbsp; A local Git repository with a full commit history</p>
 </div>
 <div class="fragment">
-<p>✅ &nbsp; That repository live on GitHub at <code>github.com/you/bigsss-study</code></p>
+<p>✅ &nbsp; That repository live on GitHub at <code>github.com/phd-bigsss/bigsss-repo</code></p>
 </div>
 <div class="fragment">
 <p>One step remains:</p>
@@ -1194,7 +1218,7 @@ anyone can visit without installing R.</p>
 <div class="fragment">
 <p>You point it at a folder or branch in your repo that contains HTML files.<br>
 GitHub serves those files as a website at a public URL:</p>
-<pre><code>https://your-username.github.io/bigsss-study</code></pre>
+<pre><code>https://phd-bigsss.github.io/bigsss-repo</code></pre>
 </div>
 <div class="fragment">
 <p>No server to configure. No hosting bill. No WordPress.<br>
@@ -1218,12 +1242,12 @@ We just need to tell GitHub where to find it.</p>
 </section>
 <section id="the-url-structure" class="slide level2">
 <h2>The URL structure</h2>
-<pre><code>https://your-username.github.io/repository-name</code></pre>
+<pre><code>https://phd-bigsss.github.io/bigsss-repo</code></pre>
 <div class="fragment">
 <div class="columns">
 <div class="column" style="width:48%;">
 <p><strong>Examples</strong></p>
-<pre><code>julio.github.io/bigsss-study
+<pre><code>phd-bigsss.github.io/bigsss-repo
 julia.github.io/dissertation-ch2
 research-lab.github.io/cohesion-study</code></pre>
 </div><div class="column" style="width:48%;">
@@ -1251,117 +1275,83 @@ research-lab.github.io/cohesion-study</code></pre>
 </div>
 </div>
 </section>
-<section id="two-publishing-approaches" class="slide level2">
-<h2>Two publishing approaches</h2>
-<p>There are two standard ways to connect Quarto to GitHub Pages.</p>
+<section id="the-approach" class="slide level2">
+<h2>The approach</h2>
+<p><strong>Render locally → commit → push → GitHub Pages serves the HTML.</strong></p>
 <div class="fragment">
-<p><strong>Approach A — <code>/docs</code> folder</strong></p>
-<p>Render your document into a <code>/docs</code> subfolder, commit it, and tell GitHub Pages to serve from there.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb36-1"><a href=""></a><span class="co"># _quarto.yml</span></span>
-<span id="cb36-2"><a href=""></a><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You manage what gets committed manually.</p>
+<pre><code>bigsss-repo/
+├── index.html           ← produced by quarto render
+├── main_document.qmd    ← your source
+└── ...</code></pre>
 </div>
 <div class="fragment">
-<p><strong>Approach B — <code>quarto publish</code></strong></p>
-<p>Run one command. Quarto renders the document, creates a dedicated <code>gh-pages</code> branch, and pushes the HTML automatically.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href=""></a><span class="ex">quarto</span> publish gh-pages</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p>GitHub Pages is configured to serve from that branch.</p>
-</div>
-</section>
-<section id="which-approach-today" class="slide level2">
-<h2>Which approach today?</h2>
-<p><strong>We will use <code>quarto publish gh-pages</code>.</strong></p>
-<div class="fragment">
-<div class="columns">
-<div class="column" style="width:48%;">
-<p><strong>Why not <code>/docs</code>?</strong></p>
-<ul>
-<li>Requires committing rendered HTML into the <code>main</code> branch</li>
-<li>Mixing source files and output in the same commit history</li>
-<li>More manual steps to get right</li>
-</ul>
-</div><div class="column" style="width:48%;">
-<p><strong>Why <code>quarto publish</code>?</strong></p>
-<ul>
-<li>One command does everything</li>
-<li>Rendered output lives in a separate branch — history stays clean</li>
-<li>Works the same way regardless of OS</li>
-<li>This is the approach Quarto’s own documentation recommends</li>
-</ul>
-</div></div>
-</div>
-</section>
-<section id="what-quarto-publish-gh-pages-does" class="slide level2">
-<h2>What <code>quarto publish gh-pages</code> does</h2>
-<p>Under the hood, in one command:</p>
-<div class="fragment">
-<ol type="1">
-<li>Renders your <code>.qmd</code> to HTML with <code>self-contained: true</code></li>
-<li>Creates a <code>gh-pages</code> branch in your repo (if it does not exist)</li>
-<li>Pushes the rendered HTML to that branch</li>
-<li>GitHub Pages detects the branch and deploys the site</li>
-</ol>
-</div>
-<div class="fragment">
-<p>On your <code>main</code> branch, <strong>nothing changes</strong> — your source files stay clean.</p>
-</div>
-<div class="fragment">
-<pre><code>main branch       processing/  input/  output/  main_document.qmd  README.md
-gh-pages branch   index.html   (rendered output only)</code></pre>
+<p>GitHub Pages is configured to serve files from the root of the <code>main</code> branch.<br>
+No extra branches, no extra commands — just your normal Git workflow.</p>
 </div>
 </section>
 <section id="one-required-yaml-change" class="slide level2">
 <h2>One required YAML change</h2>
-<p>Before publishing, add <code>self-contained: true</code> to your document’s YAML header.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb39-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb39-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Study Report"</span></span>
-<span id="cb39-3"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Julio"</span></span>
-<span id="cb39-4"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb39-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb39-6"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb39-7"><a href=""></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb39-8"><a href=""></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
-<span id="cb39-9"><a href=""></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb39-10"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb39-11"><a href=""></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb39-12"><a href=""></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">    # ← add this line</span></span>
-<span id="cb39-13"><a href=""></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb39-14"><a href=""></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb39-15"><a href=""></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb39-16"><a href=""></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Add two options to your document’s YAML header before publishing.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb41-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Study Report"</span></span>
+<span id="cb41-3"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Julio"</span></span>
+<span id="cb41-4"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb41-5"><a href=""></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb41-6"><a href=""></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb41-7"><a href=""></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb41-8"><a href=""></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb41-9"><a href=""></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb41-10"><a href=""></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb41-11"><a href=""></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb41-12"><a href=""></a><span class="at">    </span><span class="fu">self-contained</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">    # ← bundle CSS/JS into the file</span></span>
+<span id="cb41-13"><a href=""></a><span class="at">    </span><span class="fu">output-file</span><span class="kw">:</span><span class="at"> index.html</span><span class="co"> # ← Pages looks for index.html at the root URL</span></span>
+<span id="cb41-14"><a href=""></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb41-15"><a href=""></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb41-16"><a href=""></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb41-17"><a href=""></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
-<p>Without it, the HTML file references external CSS and JS files that GitHub Pages cannot find.<br>
-With it, everything is bundled into a single portable <code>.html</code> file.</p>
+<p><code>self-contained: true</code> — everything is bundled into one portable <code>.html</code> file.<br>
+<code>output-file: index.html</code> — GitHub Pages serves <code>index.html</code> at the root URL by default.</p>
 </div>
 </section>
-<section id="the-publish-command" class="slide level2">
-<h2>The publish command</h2>
-<p>From the <strong>RStudio Terminal</strong> tab, inside your project folder:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href=""></a><span class="ex">quarto</span> publish gh-pages</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="configure-github-pages" class="slide level2">
+<h2>Configure GitHub Pages</h2>
+<p>Do this <strong>once</strong> in your repo settings on GitHub:</p>
 <div class="fragment">
-<p>You will see:</p>
-<pre><code>? Publish update to: » https://julio.github.io/bigsss-study/ (GitHub Pages)
-[Y/n]</code></pre>
-<p>Press <code>Y</code> and Enter.</p>
+<blockquote>
+<p><strong>Repository → Settings → Pages</strong><br>
+Source: <em>Deploy from a branch</em><br>
+Branch: <code>main</code> — Folder: <code>/ (root)</code> → <strong>Save</strong></p>
+</blockquote>
 </div>
 <div class="fragment">
-<p>Quarto renders, pushes, and prints your live URL.<br>
-GitHub takes about <strong>1–2 minutes</strong> to deploy — then the site is live.</p>
+<p>Your site will be live at:</p>
+<pre><code>https://phd-bigsss.github.io/bigsss-repo</code></pre>
+<p>GitHub takes about <strong>1–2 minutes</strong> to deploy after the first push.</p>
+</div>
+</section>
+<section id="the-workflow" class="slide level2">
+<h2>The workflow</h2>
+<p>From the <strong>RStudio Terminal</strong>, inside your project:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href=""></a><span class="ex">quarto</span> render                          <span class="co"># 1. produces index.html</span></span>
+<span id="cb43-2"><a href=""></a><span class="fu">git</span> add .                              <span class="co"># 2. stage everything</span></span>
+<span id="cb43-3"><a href=""></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Render report"</span>          <span class="co"># 3. commit</span></span>
+<span id="cb43-4"><a href=""></a><span class="fu">git</span> push                               <span class="co"># 4. push → Pages updates automatically</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="fragment">
+<p>No new commands to learn — just your normal Git workflow with a <code>quarto render</code> at the start.</p>
 </div>
 </section>
 <section id="the-update-cycle" class="slide level2">
 <h2>The update cycle</h2>
-<p>After the first publish, updating your site is two steps:</p>
+<p>Every time you update your report:</p>
 <div class="fragment">
-<p><strong>1. Edit your document</strong></p>
-<p>Make any change to <code>main_document.qmd</code> — add a paragraph, update a table, fix a label.</p>
-</div>
-<div class="fragment">
-<p><strong>2. Publish again</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href=""></a><span class="ex">quarto</span> publish gh-pages</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="fragment">
-<p>That’s it. The live website updates within a minute or two.</p>
+<ol type="1">
+<li>Edit <code>main_document.qmd</code></li>
+<li><code>quarto render</code> — re-generates <code>index.html</code></li>
+<li><code>git add .</code></li>
+<li><code>git commit -m "Update report"</code></li>
+<li><code>git push</code> — GitHub Pages picks up the new HTML automatically</li>
+</ol>
 </div>
 <div class="fragment">
 <div class="callout callout-note callout-titled callout-style-default">
@@ -1373,8 +1363,8 @@ GitHub takes about <strong>1–2 minutes</strong> to deploy — then the site is
 <p><strong>Nota</strong></p>
 </div>
 <div class="callout-content">
-<p>You still commit your source file changes to <code>main</code> as usual with Git.<br>
-<code>quarto publish</code> handles the <code>gh-pages</code> branch separately — you never touch it directly.</p>
+<p>You are doing nothing new here — it is the same render → commit → push pattern<br>
+you have been using all workshop. Pages just makes it publicly visible.</p>
 </div>
 </div>
 </div>
@@ -1383,19 +1373,19 @@ GitHub takes about <strong>1–2 minutes</strong> to deploy — then the site is
 <section id="linking-everything-together" class="slide level2">
 <h2>Linking everything together</h2>
 <p>Update your <code>README.md</code> to include the Pages link:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href=""></a><span class="fu"># bigsss-study</span></span>
-<span id="cb43-2"><a href=""></a></span>
-<span id="cb43-3"><a href=""></a>Reproducible research project following the IPO protocol.</span>
-<span id="cb43-4"><a href=""></a></span>
-<span id="cb43-5"><a href=""></a><span class="fu">## Live report</span></span>
-<span id="cb43-6"><a href=""></a></span>
-<span id="cb43-7"><a href=""></a>📄 <span class="co">[</span><span class="ot">View the report</span><span class="co">](https://julio.github.io/bigsss-study)</span></span>
-<span id="cb43-8"><a href=""></a></span>
-<span id="cb43-9"><a href=""></a><span class="fu">## Repository structure</span></span>
-<span id="cb43-10"><a href=""></a></span>
-<span id="cb43-11"><a href=""></a>input/       Raw and processed data</span>
-<span id="cb43-12"><a href=""></a>processing/  Analysis scripts</span>
-<span id="cb43-13"><a href=""></a>output/      Tables and figures</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href=""></a><span class="fu"># bigsss-repo</span></span>
+<span id="cb44-2"><a href=""></a></span>
+<span id="cb44-3"><a href=""></a>Reproducible research project following the IPO protocol.</span>
+<span id="cb44-4"><a href=""></a></span>
+<span id="cb44-5"><a href=""></a><span class="fu">## Live report</span></span>
+<span id="cb44-6"><a href=""></a></span>
+<span id="cb44-7"><a href=""></a>📄 <span class="co">[</span><span class="ot">View the report</span><span class="co">](https://phd-bigsss.github.io/bigsss-repo)</span></span>
+<span id="cb44-8"><a href=""></a></span>
+<span id="cb44-9"><a href=""></a><span class="fu">## Repository structure</span></span>
+<span id="cb44-10"><a href=""></a></span>
+<span id="cb44-11"><a href=""></a>input/       Raw and processed data</span>
+<span id="cb44-12"><a href=""></a>processing/  Analysis scripts</span>
+<span id="cb44-13"><a href=""></a>output/      Tables and figures</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Now anyone who visits your GitHub repo sees the live link immediately.</p>
 </div>
@@ -1425,10 +1415,14 @@ using only tools you already have open on your screen.</p>
 <p>Your GitHub repo and published site work as a pair:</p>
 <div class="fragment">
 <table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
-<th><code>github.com/you/bigsss-study</code></th>
-<th><code>you.github.io/bigsss-study</code></th>
+<th><code>github.com/phd-bigsss/bigsss-repo</code></th>
+<th><code>phd-bigsss.github.io/bigsss-repo</code></th>
 </tr>
 </thead>
 <tbody>
@@ -1456,11 +1450,12 @@ the Pages site for accessibility.</p>
 <h2>Up next — hands-on</h2>
 <p>After the coffee break:</p>
 <ol type="1">
-<li>Add <code>self-contained: true</code> to your YAML header</li>
-<li>Re-render locally and confirm the HTML opens correctly</li>
-<li>Run <code>quarto publish gh-pages</code> from the RStudio Terminal tab</li>
+<li>Add <code>self-contained: true</code> and <code>output-file: index.html</code> to your YAML</li>
+<li>Run <code>quarto render</code> — confirm <code>index.html</code> appears in the folder</li>
+<li><code>git add .</code> → <code>git commit -m "Render report"</code> → <code>git push</code></li>
+<li>Configure GitHub Pages: Settings → Pages → main → / (root) → Save</li>
 <li>Visit your live URL together</li>
-<li>Make a small edit, re-publish, watch the update propagate</li>
+<li>Make a small edit, re-render, commit, push — watch the update propagate</li>
 <li>Add the Pages link to your README and push</li>
 </ol>
 <div class="fragment">

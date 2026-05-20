@@ -1,0 +1,270 @@
+---
+title: "Occupational Prestige: A Reproducible Report"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true 
+    theme: cosmo
+    code-fold: true
+    self-contained: true
+    output-file: index.html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+if (!requireNamespace("pacman", quietly = TRUE))
+  install.packages("pacman", repos = "https://cloud.r-project.org")
+
+pacman::p_load(
+  here,
+  car,
+  dplyr,
+  ggplot2,
+  vtable,
+  kableExtra,
+  broom,
+  texreg,
+  scales
+)
+```
+
+```{r}
+#| label: prep-data
+#| include: false
+
+# Load raw data
+data(Prestige)
+data_orig <- Prestige
+
+# Recode variables
+dfstudy1 <- data_orig %>%
+  mutate(
+    prestige_cont  = prestige,
+    income_cont    = income,
+    education_cont = education,
+    women_pct      = women,
+    income_cat = car::recode(income,
+      "1000:8000 = 'Low'; 8001:12000 = 'Mid'; else = 'High'"),
+    education_level = car::recode(education,
+      "lo:10.09 = 'Low'; 10.1:13 = 'Mid'; 13.1:hi = 'High'"),
+    prestige_tier = car::recode(prestige,
+      "0:30.5 = 'Low'; 30.6:60 = 'Mid'; 60.1:100 = 'High'"),
+    blue_collar  = car::recode(type, "'bc'   = 1; else = 0"),
+    professional = car::recode(type, "'prof' = 1; else = 0"),
+    high_women   = car::recode(women, "50:100 = 1; else = 0")
+  ) %>%
+  as.data.frame()
+
+# Save processed data
+dir.create(here("input/data/proc"), recursive = TRUE, showWarnings = FALSE)
+dir.create(here("output/images"),   recursive = TRUE, showWarnings = FALSE)
+dir.create(here("output/tables"),   recursive = TRUE, showWarnings = FALSE)
+save(dfstudy1, file = here("input/data/proc/dfstudy1.RData"))
+
+# Prepare regression data frame
+df_reg <- dfstudy1 %>%
+  mutate(
+    income_cat      = factor(income_cat,      levels = c("Low", "Mid", "High")),
+    education_level = factor(education_level, levels = c("Low", "Mid", "High")),
+    high_women      = factor(high_women,  levels = c(0, 1), labels = c("No", "Yes")),
+    blue_collar     = factor(blue_collar, levels = c(0, 1), labels = c("No", "Yes"))
+  )
+
+# Fit regression models
+model_1 <- lm(prestige_cont ~ income_cont + education_cont, data = df_reg)
+model_2 <- lm(prestige_cont ~ income_cont + education_cont + women_pct + blue_collar, data = df_reg)
+model_3 <- lm(prestige_cont ~ income_cat + education_level, data = df_reg)
+model_4 <- lm(prestige_cont ~ income_cat + education_level + high_women + blue_collar, data = df_reg)
+```
+
+## Introduction
+
+This report analyses occupational prestige scores from the `Prestige` dataset (Duncan, 1961; `car` package).
+The dataset covers **`r nrow(dfstudy1)`** occupations measured across Canada.
+The mean prestige score is **`r round(mean(dfstudy1$prestige_cont), 1)`**
+(SD = `r round(sd(dfstudy1$prestige_cont), 1)`),
+with values ranging from `r min(dfstudy1$prestige_cont)` to `r max(dfstudy1$prestige_cont)`.
+
+We examine how income, education, gender composition, and occupational type predict prestige.
+
+## Data and Variables
+
+### Descriptive Statistics
+
+@tbl-descriptives reports summary statistics for all processed variables.
+
+```{r}
+#| label: tbl-descriptives
+#| tbl-cap: "Descriptive statistics of processed variables"
+#| echo: false
+
+tab001 <- vtable::st(
+  dfstudy1,
+  labels         = TRUE,
+  out            = "kable",
+  summ           = c("notNA(x)", "mean(x)", "median(x)", "sd(x)", "min(x)", "max(x)"),
+  summ.names     = c("N", "Mean (%)", "Median", "SD", "Min", "Max"),
+  factor.numeric = FALSE,
+  digits         = 2,
+  title          = ""
+) %>%
+  kable_classic(html_font = "sans", full_width = FALSE) %>%
+  footnote(general = "Numeric variables: mean, median, SD, min, max. Categorical: counts and percentages.")
+
+kableExtra::save_kable(tab001, here("output/tables/table001.html"))
+tab001
+```
+
+## Visualizations
+
+### Univariate Distributions
+
+@fig-hist shows the distribution of prestige scores across occupations.
+The distribution is roughly symmetric with a slight right skew.
+@fig-bar displays the frequency of income categories.
+
+```{r}
+#| label: fig-hist
+#| fig-cap: "Distribution of occupational prestige scores"
+#| fig-width: 7
+#| fig-height: 4
+#| fig-align: center
+#| out-width: "85%"
+#| dpi: 300
+
+p_hist <- ggplot(dfstudy1, aes(x = prestige_cont)) +
+  geom_histogram(bins = 15, fill = "steelblue", alpha = 0.7) +
+  labs(x = "Prestige Score", y = "Frequency") +
+  theme_minimal()
+
+ggsave(here("output/images/figure001.png"), p_hist, width = 7, height = 4, dpi = 300)
+p_hist
+```
+
+```{r}
+#| label: fig-bar
+#| fig-cap: "Frequency of income categories"
+#| fig-width: 7
+#| fig-height: 4
+#| fig-align: center
+#| out-width: "85%"
+#| dpi: 300
+
+p_bar <- ggplot(dfstudy1, aes(x = income_cat, fill = income_cat)) +
+  geom_bar(show.legend = FALSE) +
+  labs(x = "Income Category", y = "Count") +
+  theme_minimal()
+
+ggsave(here("output/images/figure002.png"), p_bar, width = 7, height = 4, dpi = 300)
+p_bar
+```
+
+### Bivariate Relationships
+
+@fig-scatter-edu presents the relationship between education and prestige, and
+@fig-scatter-box shows the distribution of prestige across income categories.
+Both panels suggest that higher education and income are associated with greater occupational prestige.
+
+```{r}
+#| label: fig-scatter-edu
+#| fig-cap: "Prestige vs. years of education"
+#| fig-width: 7
+#| fig-height: 4
+#| fig-align: center
+#| out-width: "85%"
+#| dpi: 300
+
+p_scatter <- ggplot(dfstudy1, aes(x = education_cont, y = prestige_cont)) +
+  geom_point(alpha = 0.6, size = 3, color = "steelblue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(x = "Years of Education", y = "Prestige Score") +
+  theme_minimal()
+
+ggsave(here("output/images/figure003.png"), p_scatter, width = 7, height = 5, dpi = 300)
+p_scatter
+```
+
+```{r}
+#| label: fig-scatter-box
+#| fig-cap: "Prestige score by income category"
+#| fig-width: 7
+#| fig-height: 4
+#| fig-align: center
+#| out-width: "85%"
+#| dpi: 300
+
+p_box <- ggplot(dfstudy1, aes(x = income_cat, y = prestige_cont, fill = income_cat)) +
+  geom_boxplot(alpha = 0.7, show.legend = FALSE) +
+  geom_jitter(width = 0.2, alpha = 0.3) +
+  labs(x = "Income Category", y = "Prestige Score") +
+  theme_minimal()
+
+ggsave(here("output/images/figure004.png"), p_box, width = 7, height = 5, dpi = 300)
+p_box
+```
+
+## Regression Analysis
+
+We estimate four OLS models predicting occupational prestige.
+Models 1 and 2 use continuous predictors; Models 3 and 4 use categorical versions.
+The full model (Model 4) explains
+**`r scales::percent(summary(model_4)$r.squared, accuracy = 0.1)`** of the variance in prestige
+and includes gender composition and blue-collar status as additional controls.
+
+Results are reported in @tbl-regression.
+
+```{r}
+#| label: tbl-regression
+#| tbl-cap: "OLS regression models predicting occupational prestige"
+#| results: asis
+#| echo: false
+
+coef_map <- list(
+  "(Intercept)"          = "Intercept",
+  "income_cont"          = "Income (continuous)",
+  "education_cont"       = "Education (continuous)",
+  "income_catMid"        = "Income: Mid (ref. Low)",
+  "income_catHigh"       = "Income: High (ref. Low)",
+  "education_levelMid"   = "Education: Mid (ref. Low)",
+  "education_levelHigh"  = "Education: High (ref. Low)",
+  "women_pct"            = "Women (%)",
+  "high_womenYes"        = "High women share: Yes (ref. No)",
+  "blue_collarYes"       = "Blue collar: Yes (ref. No)"
+)
+
+# Save standalone HTML file to output/tables/
+htmlreg(
+  list(model_1, model_2, model_3, model_4),
+  custom.coef.map    = coef_map,
+  custom.model.names = c("M1 Cont.", "M2 Cont.", "M3 Cat.", "M4 Cat."),
+  caption            = "OLS regression models predicting occupational prestige",
+  caption.above      = TRUE,
+  file               = here("output/tables/table002.html")
+)
+
+# Render inline (fragment only — no file argument)
+htmlreg(
+  list(model_1, model_2, model_3, model_4),
+  custom.coef.map    = coef_map,
+  custom.model.names = c("M1 Cont.", "M2 Cont.", "M3 Cat.", "M4 Cat."),
+  caption.above      = TRUE
+)
+```
+
+## Conclusion
+
+Using the `Prestige` dataset (`r nrow(dfstudy1)` occupations), we find that both income and education
+are strong positive predictors of occupational prestige.
+The best-fitting model (M4) achieves an adjusted R² of
+`r round(summary(model_4)$adj.r.squared, 3)`,
+confirming that categorical indicators alongside gender composition and occupational type
+explain most of the variance in prestige scores.

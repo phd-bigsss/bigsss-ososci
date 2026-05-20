@@ -2,6 +2,8 @@
 bibliography: "bib/phd-tesis.bib" 
 ---
 
+# GitHub Pages {background-color="#aa0000"}
+
 ## Where we are
 
 At this point you have:
@@ -110,93 +112,29 @@ Your username becomes part of the URL — worth keeping it professional if you d
 
 ---
 
-## Two publishing approaches
+## The approach
 
-There are two standard ways to connect Quarto to GitHub Pages.
-
-. . .
-
-**Approach A — `/docs` folder**
-
-Render your document into a `/docs` subfolder, commit it, and tell GitHub Pages to serve from there.
-
-```yaml
-# _quarto.yml
-output-dir: docs
-```
-
-You manage what gets committed manually.
-
-. . .
-
-**Approach B — `quarto publish`**
-
-Run one command. Quarto renders the document, creates a dedicated `gh-pages` branch, and pushes the HTML automatically.
-
-```bash
-quarto publish gh-pages
-```
-
-GitHub Pages is configured to serve from that branch.
-
----
-
-## Which approach today?
-
-**We will use `quarto publish gh-pages`.**
-
-. . .
-
-:::: {.columns}
-
-::: {.column width="48%"}
-**Why not `/docs`?**
-
-- Requires committing rendered HTML into the `main` branch
-- Mixing source files and output in the same commit history
-- More manual steps to get right
-:::
-
-::: {.column width="48%"}
-**Why `quarto publish`?**
-
-- One command does everything
-- Rendered output lives in a separate branch — history stays clean
-- Works the same way regardless of OS
-- This is the approach Quarto's own documentation recommends
-:::
-
-::::
-
----
-
-## What `quarto publish gh-pages` does
-
-Under the hood, in one command:
-
-. . .
-
-1. Renders your `.qmd` to HTML with `self-contained: true`
-2. Creates a `gh-pages` branch in your repo (if it does not exist)
-3. Pushes the rendered HTML to that branch
-4. GitHub Pages detects the branch and deploys the site
-
-. . .
-
-On your `main` branch, **nothing changes** — your source files stay clean.
+**Render locally → commit → push → GitHub Pages serves the HTML.**
 
 . . .
 
 ```
-main branch       processing/  input/  output/  main_document.qmd  README.md
-gh-pages branch   index.html   (rendered output only)
+bigsss-repo/
+├── index.html           ← produced by quarto render
+├── main_document.qmd    ← your source
+└── ...
 ```
+
+. . .
+
+GitHub Pages is configured to serve files from the root of the `main` branch.  
+No extra branches, no extra commands — just your normal Git workflow.
 
 ---
 
 ## One required YAML change
 
-Before publishing, add `self-contained: true` to your document's YAML header.
+Add two options to your document's YAML header before publishing.
 
 ```yaml
 ---
@@ -210,7 +148,8 @@ format:
     number-sections: true
     theme: cosmo
     code-fold: true
-    self-contained: true    # ← add this line
+    self-contained: true    # ← bundle CSS/JS into the file
+    output-file: index.html # ← Pages looks for index.html at the root URL
 execute:
   echo: false
   warning: false
@@ -219,64 +158,67 @@ execute:
 
 . . .
 
-Without it, the HTML file references external CSS and JS files that GitHub Pages cannot find.  
-With it, everything is bundled into a single portable `.html` file.
+`self-contained: true` — everything is bundled into one portable `.html` file.  
+`output-file: index.html` — GitHub Pages serves `index.html` at the root URL by default.
 
 ---
 
-## The publish command
+## Configure GitHub Pages
 
-From the **RStudio Terminal** tab, inside your project folder:
+Do this **once** in your repo settings on GitHub:
+
+. . .
+
+> **Repository → Settings → Pages**  
+> Source: *Deploy from a branch*  
+> Branch: `main` — Folder: `/ (root)` → **Save**
+
+. . .
+
+Your site will be live at:
+
+```
+https://phd-bigsss.github.io/bigsss-repo
+```
+
+GitHub takes about **1–2 minutes** to deploy after the first push.
+
+---
+
+## The workflow
+
+From the **RStudio Terminal**, inside your project:
 
 ```bash
-quarto publish gh-pages
+quarto render                          # 1. produces index.html
+git add .                              # 2. stage everything
+git commit -m "Render report"          # 3. commit
+git push                               # 4. push → Pages updates automatically
 ```
 
 . . .
 
-You will see:
-
-```
-? Publish update to: » https://phd-bigsss.github.io/bigsss-repo/ (GitHub Pages)
-[Y/n]
-```
-
-Press `Y` and Enter.
-
-. . .
-
-Quarto renders, pushes, and prints your live URL.  
-GitHub takes about **1–2 minutes** to deploy — then the site is live.
+No new commands to learn — just your normal Git workflow with a `quarto render` at the start.
 
 ---
 
 ## The update cycle
 
-After the first publish, updating your site is two steps:
+Every time you update your report:
 
 . . .
 
-**1. Edit your document**
-
-Make any change to `main_document.qmd` — add a paragraph, update a table, fix a label.
-
-. . .
-
-**2. Publish again**
-
-```bash
-quarto publish gh-pages
-```
-
-. . .
-
-That's it. The live website updates within a minute or two.
+1. Edit `main_document.qmd`
+2. `quarto render` — re-generates `index.html`
+3. `git add .`
+4. `git commit -m "Update report"`
+5. `git push` — GitHub Pages picks up the new HTML automatically
 
 . . .
 
 ::: {.callout-note}
-You still commit your source file changes to `main` as usual with Git.  
-`quarto publish` handles the `gh-pages` branch separately — you never touch it directly.
+You are doing nothing new here — it is the same render → commit → push pattern  
+you have been using all workshop. Pages just makes it publicly visible.
 :::
 
 ---
@@ -347,18 +289,17 @@ Your GitHub repo and published site work as a pair:
 Both URLs are worth sharing — the repo for transparency,  
 the Pages site for accessibility.
 
----
-
 ## Up next — hands-on
 
 After the coffee break:
 
-1. Add `self-contained: true` to your YAML header
-2. Re-render locally and confirm the HTML opens correctly
-3. Run `quarto publish gh-pages` from the RStudio Terminal tab
-4. Visit your live URL together
-5. Make a small edit, re-publish, watch the update propagate
-6. Add the Pages link to your README and push
+1. Add `self-contained: true` and `output-file: index.html` to your YAML
+2. Run `quarto render` — confirm `index.html` appears in the folder
+3. `git add .` → `git commit -m "Render report"` → `git push`
+4. Configure GitHub Pages: Settings → Pages → main → / (root) → Save
+5. Visit your live URL together
+6. Make a small edit, re-render, commit, push — watch the update propagate
+7. Add the Pages link to your README and push
 
 . . .
 
