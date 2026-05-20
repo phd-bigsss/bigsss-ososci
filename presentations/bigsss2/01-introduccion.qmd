@@ -3,11 +3,11 @@ bibliography: "bib/phd-tesis.bib"
 ---
 ## 
 
-![](images/morning.PNG){width="70%" fig-align="center"} 
+![](images/morning2.PNG){width="70%" fig-align="center"} 
 
 ## 
 
-![](images/afternoon.PNG){width="70%" fig-align="center"}
+![](images/afternoon2.PNG){width="70%" fig-align="center"}
 
 ## Materials
 
@@ -22,48 +22,6 @@ bibliography: "bib/phd-tesis.bib"
  
 ![](images/lisa-logo2.PNG){width="50%" fig-align="center"}
 
-## Why an Open (Social) Science?
-
-Growing concerns about openness and transparency have highlighted three problematic practices:
-
-::: {.columns}
-
-::: {.column width="33%"}
-**p-hacking**
-![](images/badpractice-phacking.svg){width="100%"}
-:::
-
-::: {.column width="33%"}
-**HARKing**
-![](images/badpractice-harking.svg){width="100%"}
-:::
-
-::: {.column width="33%"}
-**Selective reporting**
-![](images/badpractice-selective-reporting.svg){width="100%"}
-:::
-
-:::
-
-::: {style="border: 1.5px solid #cfd8dc; background-color: #f6fbff; padding: 0.6em 0.9em; border-radius: 8px; margin-top: 0.6em; font-size: 80%;"}
-**Key Issues**
-- Publication bias (selective positive results)
-- Decisions (hiden uncertainty)
-- Poor reproducibility (inaccessible data/code)
-:::
-
-## 
-
-::: {.r-stack}
-![](images/miske_2026.png){.fragment width="80%"}
-
-![](images/miske_2026a.jfif){.fragment width="80%"}
-
-![](images/breznau1.PNG){.fragment width="90%"}
-
-![](images/breznau.jpg){.fragment width="90%"}
-
-:::
 
 ## How does an open social science look like?
 

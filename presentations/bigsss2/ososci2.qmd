@@ -98,13 +98,13 @@ rm(list = ls())
 
 {{< include 01-introduccion.qmd >}}
 
-{{< include 02-ipo.qmd >}}
+{{< include 02-version-control.qmd >}}
 
-{{< include 03-ipo-R.qmd >}}
+{{< include 03-github.qmd >}}  
 
-{{< include 04-markdown-basics.qmd >}} 
+{{< include 04-pages.qmd >}}
 
-{{< include 05-ipo-quarto.qmd >}} 
+<!-- {{< include 05-ipo-quarto.qmd >}}  -->
 
 # Thank you for your attention
 

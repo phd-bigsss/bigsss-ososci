@@ -1,0 +1,373 @@
+---
+bibliography: "bib/phd-tesis.bib" 
+---
+
+## Where we are
+
+At this point you have:
+
+. . .
+
+✅ &nbsp; A reproducible project following the IPO protocol (`bigsss-repo/`)
+
+. . .
+
+✅ &nbsp; A local Git repository with a full commit history
+
+. . .
+
+✅ &nbsp; That repository live on GitHub at `github.com/phd-bigsss/bigsss-repo`
+
+. . .
+
+One step remains:
+
+> Turning your Quarto HTML report into a **public website**  
+> anyone can visit without installing R.
+
+---
+
+## What is GitHub Pages?
+
+GitHub Pages is a **free static website hosting service** built into GitHub.
+
+. . .
+
+You point it at a folder or branch in your repo that contains HTML files.  
+GitHub serves those files as a website at a public URL:
+
+```
+https://phd-bigsss.github.io/bigsss-repo
+```
+
+. . .
+
+No server to configure. No hosting bill. No WordPress.  
+The website updates every time you push new HTML to GitHub.
+
+---
+
+## Why it works perfectly with Quarto
+
+When you run `quarto render` on your `.qmd` file, you get:
+
+```
+main_document.html    ← a complete, self-contained HTML file
+```
+
+. . .
+
+GitHub Pages serves HTML files. Quarto produces HTML files.
+
+. . .
+
+```
+quarto render → main_document.html → git push → GitHub Pages → public URL
+```
+
+. . .
+
+The Quarto report you built in Part 1 is **already the right format**.  
+We just need to tell GitHub where to find it.
+
+---
+
+## The URL structure
+
+```
+https://phd-bigsss.github.io/bigsss-repo
+```
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="48%"}
+**Examples**
+
+```
+phd-bigsss.github.io/bigsss-repo
+julia.github.io/dissertation-ch2
+research-lab.github.io/cohesion-study
+```
+:::
+
+::: {.column width="48%"}
+**What determines it**
+
+- Your GitHub username (or organisation)
+- The repository name you chose
+- Nothing else to configure
+:::
+
+::::
+
+. . .
+
+::: {.callout-tip}
+Your username becomes part of the URL — worth keeping it professional if you don't have one yet.
+:::
+
+---
+
+## Two publishing approaches
+
+There are two standard ways to connect Quarto to GitHub Pages.
+
+. . .
+
+**Approach A — `/docs` folder**
+
+Render your document into a `/docs` subfolder, commit it, and tell GitHub Pages to serve from there.
+
+```yaml
+# _quarto.yml
+output-dir: docs
+```
+
+You manage what gets committed manually.
+
+. . .
+
+**Approach B — `quarto publish`**
+
+Run one command. Quarto renders the document, creates a dedicated `gh-pages` branch, and pushes the HTML automatically.
+
+```bash
+quarto publish gh-pages
+```
+
+GitHub Pages is configured to serve from that branch.
+
+---
+
+## Which approach today?
+
+**We will use `quarto publish gh-pages`.**
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="48%"}
+**Why not `/docs`?**
+
+- Requires committing rendered HTML into the `main` branch
+- Mixing source files and output in the same commit history
+- More manual steps to get right
+:::
+
+::: {.column width="48%"}
+**Why `quarto publish`?**
+
+- One command does everything
+- Rendered output lives in a separate branch — history stays clean
+- Works the same way regardless of OS
+- This is the approach Quarto's own documentation recommends
+:::
+
+::::
+
+---
+
+## What `quarto publish gh-pages` does
+
+Under the hood, in one command:
+
+. . .
+
+1. Renders your `.qmd` to HTML with `self-contained: true`
+2. Creates a `gh-pages` branch in your repo (if it does not exist)
+3. Pushes the rendered HTML to that branch
+4. GitHub Pages detects the branch and deploys the site
+
+. . .
+
+On your `main` branch, **nothing changes** — your source files stay clean.
+
+. . .
+
+```
+main branch       processing/  input/  output/  main_document.qmd  README.md
+gh-pages branch   index.html   (rendered output only)
+```
+
+---
+
+## One required YAML change
+
+Before publishing, add `self-contained: true` to your document's YAML header.
+
+```yaml
+---
+title: "Study Report"
+author: "Julio"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+    code-fold: true
+    self-contained: true    # ← add this line
+execute:
+  echo: false
+  warning: false
+---
+```
+
+. . .
+
+Without it, the HTML file references external CSS and JS files that GitHub Pages cannot find.  
+With it, everything is bundled into a single portable `.html` file.
+
+---
+
+## The publish command
+
+From the **RStudio Terminal** tab, inside your project folder:
+
+```bash
+quarto publish gh-pages
+```
+
+. . .
+
+You will see:
+
+```
+? Publish update to: » https://phd-bigsss.github.io/bigsss-repo/ (GitHub Pages)
+[Y/n]
+```
+
+Press `Y` and Enter.
+
+. . .
+
+Quarto renders, pushes, and prints your live URL.  
+GitHub takes about **1–2 minutes** to deploy — then the site is live.
+
+---
+
+## The update cycle
+
+After the first publish, updating your site is two steps:
+
+. . .
+
+**1. Edit your document**
+
+Make any change to `main_document.qmd` — add a paragraph, update a table, fix a label.
+
+. . .
+
+**2. Publish again**
+
+```bash
+quarto publish gh-pages
+```
+
+. . .
+
+That's it. The live website updates within a minute or two.
+
+. . .
+
+::: {.callout-note}
+You still commit your source file changes to `main` as usual with Git.  
+`quarto publish` handles the `gh-pages` branch separately — you never touch it directly.
+:::
+
+---
+
+## Linking everything together
+
+Update your `README.md` to include the Pages link:
+
+```markdown
+# bigsss-repo
+
+Reproducible research project following the IPO protocol.
+
+## Live report
+
+📄 [View the report](https://phd-bigsss.github.io/bigsss-repo)
+
+## Repository structure
+
+input/       Raw and processed data
+processing/  Analysis scripts
+output/      Tables and figures
+```
+
+. . .
+
+Now anyone who visits your GitHub repo sees the live link immediately.
+
+---
+
+## The full open science workflow
+
+```
+Research question
+      ↓
+IPO protocol           (Part 1 — project structure, R scripts, Quarto)
+      ↓
+Version control        (Part 2 — Git: every decision is traceable)
+      ↓
+GitHub                 (Part 2 — remote backup, shareable, citable)
+      ↓
+GitHub Pages           (Part 2 — report as a public website)
+      ↓
+OSF / Zenodo           (future — persistent DOI, preregistration)
+```
+
+. . .
+
+> From raw data to a public, reproducible, citable research report —  
+> using only tools you already have open on your screen.
+
+---
+
+## What the site looks like
+
+Your GitHub repo and published site work as a pair:
+
+. . .
+
+| `github.com/phd-bigsss/bigsss-repo` | `phd-bigsss.github.io/bigsss-repo` |
+|---|---|
+| Source code, scripts, data | Rendered HTML report |
+| Commit history and diffs | What a reader sees |
+| For collaborators and reviewers | For everyone else |
+
+. . .
+
+Both URLs are worth sharing — the repo for transparency,  
+the Pages site for accessibility.
+
+---
+
+## Up next — hands-on
+
+After the coffee break:
+
+1. Add `self-contained: true` to your YAML header
+2. Re-render locally and confirm the HTML opens correctly
+3. Run `quarto publish gh-pages` from the RStudio Terminal tab
+4. Visit your live URL together
+5. Make a small edit, re-publish, watch the update propagate
+6. Add the Pages link to your README and push
+
+. . .
+
+> At the end of this block, paste your URL into the shared document.
+
+---
+
+## References
+
+- Quarto — GitHub Pages publishing. <https://quarto.org/docs/publishing/github-pages.html>
+- GitHub Pages documentation. <https://docs.github.com/en/pages>
+- Bryan, J. (2024). *Happy Git and GitHub for the useR*. <https://happygitwithr.com>
